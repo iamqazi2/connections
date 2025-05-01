@@ -13,7 +13,7 @@ include 'connection.php'; // This includes your existing PDO connection
 $userId = $_SESSION['user_id'] ?? 0;  // Make sure to use the logged-in user's ID
 
 // Default profile image in case there's no profile image available
-$profilePicturePath = "images/default-profile.jpg"; // Default image
+$profilePicturePath = "images/profile.svg"; // Default image
 
 // Fetch profile picture using PDO
 $sql = "SELECT profile_image FROM user_details WHERE id = :id";
@@ -27,7 +27,7 @@ if ($row && !empty($row['profile_image'])) {
     $profilePicturePath = "backend/" . $row['profile_image']; // Assuming images are stored in "uploads/profiles/"
 } else {
     // If no image is found, the default profile image will be used
-    $profilePicturePath = "images/default-profile.jpg"; // Default image
+    $profilePicturePath = "images/profile.svg"; // Default image
 }
 
 ?>
