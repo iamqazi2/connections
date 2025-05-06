@@ -19,6 +19,18 @@ if (isset($_SESSION['success'])): ?>
         ?>
     </div>
 <?php endif; ?>
+<body class="bg-gray-100 font-sans">
+    <?php include 'navbar.php'; ?>
+    <?php
+if (session_status() == PHP_SESSION_NONE) session_start();
+if (isset($_SESSION['success'])): ?>
+    <div class="max-w-4xl mx-auto mt-6 p-4 bg-green-100 text-green-700 rounded-lg">
+        <?php 
+        echo $_SESSION['success']; 
+        unset($_SESSION['success']);
+        ?>
+    </div>
+<?php endif; ?>
 
     <div class="flex min-h-screen">
         <!-- Left Sidebar -->
