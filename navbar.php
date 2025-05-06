@@ -1,33 +1,51 @@
 <?php
-// Ensure session_start() is only called if no session is active
+require 'auth.php';
+
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-include 'connection.php'; // This includes your existing PDO connection
+include 'connection.php';
 
-// Get the logged-in user ID from the session (assuming user is logged in)
-$userId = $_SESSION['user_id'] ?? 0;  // Make sure to use the logged-in user's ID
+// Define base URL for image paths
+$directory = "backend/";
+$baseUrl = $directory;
 
-// Default profile image in case there's no profile image available
-$profilePicturePath = "images/default-profile.jpg"; // Default image
+$userId = $_SESSION['user_id'] ?? 0;
+// $debugMessages = "Debug: Session User ID = " . $userId . "<br>";
 
-// Fetch profile picture using PDO
-$sql = "SELECT profile_image FROM user_details WHERE id = :id";
-$stmt = $pdo->prepare($sql);
-$stmt->execute(['id' => $userId]);
-$row = $stmt->fetch(PDO::FETCH_ASSOC);
+$profilePicturePath = "images/profile.svg";
 
-// Check if the profile image is available and update the path
-if ($row && !empty($row['profile_image'])) {
-    // If an image exists, use the path stored in the database
-    $profilePicturePath =   $row['profile_image']; // Assuming images are stored in "uploads/profiles/"
+if ($userId === 0) {
+    // $debugMessages .= "Debug: No user_id in session. Please ensure you are logged in.<br>";
 } else {
-    // If no image is found, the default profile image will be used
-    $profilePicturePath = "images/default-profile.jpg"; // Default image
+    $sql = "SELECT profile_image FROM user_details WHERE user_id = :id";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute(['id' => $userId]);
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if ($row) {
+        // $debugMessages .= "Debug: User found in user_details table.<br>";
+        if (!empty($row['profile_image'])) {
+            // Prepend baseUrl to the image path from the database
+            $fullImagePath = $baseUrl . $row['profile_image'];
+            // $debugMessages .= "Debug: Profile image path from DB (adjusted) = " . $fullImagePath . "<br>";
+            
+            // Use the adjusted path for display
+            $profilePicturePath = $fullImagePath;
+            
+            // Check if the image file exists at the adjusted path
+            if (!file_exists($fullImagePath)) {
+                // $debugMessages .= "Debug: Image file does not exist at path: " . $fullImagePath . ". Falling back to default.<br>";
+                $profilePicturePath = "images/profile.svg";
+            }
+        } else {
+            // $debugMessages .= "Debug: Profile image is empty or NULL for user ID " . $userId . ". Using default image.<br>";
+        }
+    } else {
+        // $debugMessages .= "Debug: No user found in user_details table with ID " . $userId . ". Using default image.<br>";
+    }
 }
-
-
 ?>
 
 <!DOCTYPE html>
@@ -81,7 +99,7 @@ if ($row && !empty($row['profile_image'])) {
     <!-- Profile Dropdown -->
     <div class="relative">
       <button id="profileDropdownButton" class="flex items-center btns texts space-x-2  px-4  ">
-        <img src="<?php echo htmlspecialchars($profilePicturePath); ?>" alt="Profile Picture" class="h rounded-full" />
+        <img src="<?php echo htmlspecialchars($fullImagePath); ?>" alt="Profile Picture" class="h rounded-full" />
         <span>My Profile</span>
       </button>
 

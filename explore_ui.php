@@ -11,7 +11,10 @@ try {
     die("Query failed: " . $e->getMessage());
 }
 ?>
-
+<?php  
+$directory = "backend/";
+$baseUrl = $directory; 
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -189,7 +192,7 @@ try {
                 <div class="profile-image">
                     <?php 
                         // Display profile picture if available, otherwise use placeholder
-                        $profilePic = !empty($user['profile_image']) ? $user['profile_image'] : 'default-profile.png';
+                        $profilePic = !empty( $baseUrl . $user['profile_image']) ? $baseUrl .$user['profile_image'] : 'default-profile.png';
                     ?>
                     <img src="<?php echo htmlspecialchars($profilePic); ?>" alt="Profile Image">
                 </div>

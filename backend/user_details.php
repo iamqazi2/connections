@@ -155,7 +155,7 @@ function handleFileUpload($file, $targetDir, $allowedTypes, $maxSize) {
     finfo_close($finfo);
 
     if (!in_array($mime, $allowedTypes)) {
-        throw new Exception("Invalid file type. Allowed: " . implode(', ', $allowedTypes));
+        throw new Exception(" Allowed: " . implode(', ', $allowedTypes));
     }
 
     // Verify file size

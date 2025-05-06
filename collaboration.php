@@ -19,18 +19,7 @@ if (isset($_SESSION['success'])): ?>
         ?>
     </div>
 <?php endif; ?>
-<body class="bg-gray-100 font-sans">
-    <?php include 'navbar.php'; ?>
-    <?php
-if (session_status() == PHP_SESSION_NONE) session_start();
-if (isset($_SESSION['success'])): ?>
-    <div class="max-w-4xl mx-auto mt-6 p-4 bg-green-100 text-green-700 rounded-lg">
-        <?php 
-        echo $_SESSION['success']; 
-        unset($_SESSION['success']);
-        ?>
-    </div>
-<?php endif; ?>
+
 
     <div class="flex min-h-screen">
         <!-- Left Sidebar -->
@@ -58,35 +47,6 @@ if (isset($_SESSION['success'])): ?>
                         ];
                         
                         // Handle file upload
-<<<<<<< Updated upstream
-                        // Inside Step 1 POST handling in collaboration.php:
-if (isset($_FILES['media']) && $_FILES['media']['error'] == 0) {
-    $allowed = ['jpg', 'jpeg', 'png', 'pdf', 'svg', 'mp4'];
-    $filename = $_FILES['media']['name'];
-    $filetype = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
-    $max_size = 25 * 1024 * 1024; // 25MB
-
-    if (in_array($filetype, $allowed)) {
-        if ($_FILES['media']['size'] <= $max_size) {
-            // Generate unique filename and save
-            $new_filename = uniqid() . '.' . $filetype;
-            $upload_dir = __DIR__ . '/uploads/'; // Create this directory
-            if (!is_dir($upload_dir)) mkdir($upload_dir, 0755, true);
-            $target_path = $upload_dir . $new_filename;
-
-            if (move_uploaded_file($_FILES['media']['tmp_name'], $target_path)) {
-                $_SESSION['collaboration']['media'] = $target_path; // Store path
-            } else {
-                $_SESSION['error'] = "File upload failed.";
-            }
-        } else {
-            $_SESSION['error'] = "File exceeds 25MB.";
-        }
-    } else {
-        $_SESSION['error'] = "Invalid file type.";
-    }
-}
-=======
                         if (isset($_FILES['media']) && $_FILES['media']['error'] == 0) {
                             $allowed = ['jpg', 'jpeg', 'png', 'pdf', 'svg', 'mp4'];
                             $filename = $_FILES['media']['name'];
@@ -117,7 +77,6 @@ if (isset($_FILES['media']) && $_FILES['media']['error'] == 0) {
                                 $_SESSION['error'] = "Invalid file type.";
                             }
                         }
->>>>>>> Stashed changes
                         
                         // Progress to next step
                         $current_step = 2;
@@ -352,11 +311,7 @@ if (isset($_FILES['media']) && $_FILES['media']['error'] == 0) {
 
                 <?php elseif ($current_step == 4): ?>
                 <!-- Step 4: Review Details -->
-<<<<<<< Updated upstream
-                <form action="backend/process_collaboration.php" method="post">
-=======
                 <form action="backend/process_collaboration.php" method="post" enctype="multipart/form-data">
->>>>>>> Stashed changes
                     <input type="hidden" name="step" value="4">
                     <input type="hidden" name="action" value="post">
                     

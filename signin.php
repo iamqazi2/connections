@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         // Fetch user from DB
         try {
-            $stmt = $pdo->prepare("SELECT id, password FROM users WHERE email = ?");
+            $stmt = $pdo->prepare("SELECT id, password, is_first_login FROM users WHERE email = ?");
             $stmt->execute([$email]);
             $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -50,8 +50,17 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 $_SESSION['user_id'] = $user['id'];
                 $_SESSION['email'] = $email;
 
-                // Redirect to dashboard or home page
-                header("Location: dashboard.php");
+                // Check if it's the user's first login
+                if ($user['is_first_login']) {
+                    // Update is_first_login to 0
+                    $updateStmt = $pdo->prepare("UPDATE users SET is_first_login = 0 WHERE id = ?");
+                    $updateStmt->execute([$user['id']]);
+                    // Redirect to screen.php for first login
+                    header("Location: user_profile.php");
+                } else {
+                    // Redirect to dashboard.php for subsequent logins
+                    header("Location: dashboard.php");
+                }
                 exit;
             } else {
                 // Password incorrect

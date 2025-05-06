@@ -7,16 +7,44 @@ if (session_status() === PHP_SESSION_NONE) {
 
 include 'connection.php';
 
+// Define base URL for image paths
+$directory = "backend/";
+$baseUrl = $directory;
+
 $userId = $_SESSION['user_id'] ?? 0;
+// $debugMessages = "Debug: Session User ID = " . $userId . "<br>";
+
 $profilePicturePath = "images/profile.svg";
 
-$sql = "SELECT profile_image FROM user_details WHERE id = :id";
-$stmt = $pdo->prepare($sql);
-$stmt->execute(['id' => $userId]);
-$row = $stmt->fetch(PDO::FETCH_ASSOC);
+if ($userId === 0) {
+    // $debugMessages .= "Debug: No user_id in session. Please ensure you are logged in.<br>";
+} else {
+    $sql = "SELECT profile_image FROM user_details WHERE user_id = :id";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute(['id' => $userId]);
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-if ($row && !empty($row['profile_image'])) {
-    $profilePicturePath = $row['profile_image'];
+    if ($row) {
+        // $debugMessages .= "Debug: User found in user_details table.<br>";
+        if (!empty($row['profile_image'])) {
+            // Prepend baseUrl to the image path from the database
+            $fullImagePath = $baseUrl . $row['profile_image'];
+            // $debugMessages .= "Debug: Profile image path from DB (adjusted) = " . $fullImagePath . "<br>";
+            
+            // Use the adjusted path for display
+            $profilePicturePath = $fullImagePath;
+            
+            // Check if the image file exists at the adjusted path
+            if (!file_exists($fullImagePath)) {
+                // $debugMessages .= "Debug: Image file does not exist at path: " . $fullImagePath . ". Falling back to default.<br>";
+                $profilePicturePath = "images/profile.svg";
+            }
+        } else {
+            // $debugMessages .= "Debug: Profile image is empty or NULL for user ID " . $userId . ". Using default image.<br>";
+        }
+    } else {
+        // $debugMessages .= "Debug: No user found in user_details table with ID " . $userId . ". Using default image.<br>";
+    }
 }
 ?>
 <!DOCTYPE html>
@@ -47,6 +75,11 @@ if ($row && !empty($row['profile_image'])) {
   </style>
 </head>
 <body class="bg">
+  <!-- Debug Output -->
+  <!-- <div style="background-color: #f8d7da; color: #721c24; padding: 10px; margin: 10px; border: 1px solid #f5c6cb; border-radius: 5px;">
+    <?php echo $debugMessages; ?>
+  </div> -->
+
   <?php include 'navbar.php'; ?>
 
   <!-- Main Layout -->
@@ -88,7 +121,7 @@ if ($row && !empty($row['profile_image'])) {
         <div class="bg-white shadow-md borders rounded-lg p-4">
           <div class="flex items-center mb-4">
             <!-- User Profile -->
-            <img src="<?php echo htmlspecialchars($profilePicturePath); ?>" alt="User Profile" class="w-16 h-16 rounded-full mr-4">
+            <img src="<?php echo htmlspecialchars($fullImagePath); ?>" alt="User Profile" class="w-16 h-16 rounded-full mr-4">
             <!-- Post Type Bar -->
             <div style="box-shadow: 0px 0px 4px 0px #2A97FC1A; " class="flex border justify-between items-center bg-white rounded-full py-4 px-2 flex-grow">
               <span class="text-[#023564] opacity-50 mx-2">Post new Job, Internship, Research and startup Idea</span>

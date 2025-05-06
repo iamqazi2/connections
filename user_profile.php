@@ -10,14 +10,14 @@
 <body class="bg-white">
     <div class="container mx-auto px-4 py-8 max-w-6xl">
         <!-- Logo and Header -->
-        <div class="flex flex-col md:flex-row  items-center mb-8">
+        <div class="flex flex-col md:flex-row items-center mb-8">
             <div class="mb-4 md:mb-0">
                 <a href="#" class="text-blue-600 font-bold text-2xl flex items-center">
                    <img src="images/logo_full.svg" alt="Logo" class="">
                 </a>
             </div>
         </div>
-            <h1 class="text-[#023564] text-center mb-8 text-[32px] font-[700]">Setup your Profile</h1>
+        <h1 class="text-[#023564] text-center mb-8 text-[32px] font-[700]">Setup your Profile</h1>
 
         <!-- Step 1: Basic Profile Information -->
         <div id="step1" class="step-content">
@@ -46,9 +46,9 @@
                                 <i class="far fa-file-image text-xl"></i>
                             </div>
                             <p class="text-sm text-gray-600 text-center mb-1">Recommended 400x400 pixels</p>
-                            <p class="text-sm text-gray-600 text-center">PNG, JPEG, AVG, SVG file</p>
-                            <label for="profile-upload"  class="cursor-pointer mt-2">
-                                <input name="profile_image" type="file" id="profile-upload" class="hidden" accept="image/*">
+                            <p class="text-sm text-gray-600 text-center">JPG, JPEG, PNG, GIF file</p>
+                            <label for="profile-upload" class="cursor-pointer mt-2">
+                                <input name="profile_image" type="file" id="profile-upload" class="hidden" accept=".jpg,.jpeg,.png,.gif">
                                 <span class="inline-block bg-white border border-blue-500 text-blue-500 rounded-md px-3 py-1 text-sm">+</span>
                             </label>
                         </div>
@@ -191,10 +191,9 @@
                             Drag and Drop or <span class="text-blue-500 cursor-pointer">Click to Upload</span>
                         </p>
                         <p class="text-sm text-gray-500 text-center">
-                            Supported formats: JPG, PNG, PDF, SVG, MP4. Max Size: 25MB
+                            Supported formats: PDF, DOC, DOCX. Max Size: 25MB
                         </p>
-                <input type="file" id="resume-upload" accept=".pdf, .doc, .docx, .txt" />
-
+                        <input type="file" id="resume-upload" accept=".pdf,.doc,.docx" />
                     </div>
                 </div>
 
@@ -216,26 +215,26 @@
                         
                         <!-- Social media buttons -->
                         <div class="flex gap-2 mt-4 md:mt-0">
-    <a href="#" class="bg-gray-400 hover:bg-gray-500 text-white p-2 rounded-lg w-10 h-10 flex items-center justify-center social-btn" data-field="linkedin">
-        <i class="fab fa-linkedin-in"></i>
-    </a>
-    <input type="hidden" id="linkedin" name="linkedin" value="">
-    
-    <a href="#" class="bg-gray-400 hover:bg-gray-500 text-white p-2 rounded-lg w-10 h-10 flex items-center justify-center social-btn" data-field="behance">
-        <i class="fab fa-behance"></i>
-    </a>
-    <input type="hidden" id="behance" name="behance" value="">
-    
-    <a href="#" class="bg-gray-400 hover:bg-gray-500 text-white p-2 rounded-lg w-10 h-10 flex items-center justify-center social-btn" data-field="dribbble">
-        <i class="fab fa-dribbble"></i>
-    </a>
-    <input type="hidden" id="dribbble" name="dribbble" value="">
-    
-    <a href="#" class="bg-gray-400 hover:bg-gray-500 text-white p-2 rounded-lg w-10 h-10 flex items-center justify-center social-btn" data-field="flickr">
-        <i class="fab fa-flickr"></i>
-    </a>
-    <input type="hidden" id="flickr" name="flickr" value="">
-</div>
+                            <a href="#" class="bg-gray-400 hover:bg-gray-500 text-white p-2 rounded-lg w-10 h-10 flex items-center justify-center social-btn" data-field="linkedin">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <input type="hidden" id="linkedin" name="linkedin" value="">
+                            
+                            <a href="#" class="bg-gray-400 hover:bg-gray-500 text-white p-2 rounded-lg w-10 h-10 flex items-center justify-center social-btn" data-field="behance">
+                                <i class="fab fa-behance"></i>
+                            </a>
+                            <input type="hidden" id="behance" name="behance" value="">
+                            
+                            <a href="#" class="bg-gray-400 hover:bg-gray-500 text-white p-2 rounded-lg w-10 h-10 flex items-center justify-center social-btn" data-field="dribbble">
+                                <i class="fab fa-dribbble"></i>
+                            </a>
+                            <input type="hidden" id="dribbble" name="dribbble" value="">
+                            
+                            <a href="#" class="bg-gray-400 hover:bg-gray-500 text-white p-2 rounded-lg w-10 h-10 flex items-center justify-center social-btn" data-field="flickr">
+                                <i class="fab fa-flickr"></i>
+                            </a>
+                            <input type="hidden" id="flickr" name="flickr" value="">
+                        </div>
                     </div>
                 </div>
 
@@ -254,69 +253,69 @@
                     <!-- Recommended Section -->
                     <p class="text-gray-500 mb-4">Recommended</p>
                     
-                   <!-- Interest tags - first row -->
-<div class="flex flex-wrap gap-2 mb-3">
-    <button type="button" class="interest-tag bg-white border border-[#D9D9D9] hover:bg-gray-100 text-[#1E1E1ECC] text-[24px] px-3 py-2 rounded-full text-sm flex items-center" data-interest="artificial-intelligence">
-        Artificial Intelligence
-        <span class="ml-2 text-blue-500"><i class="fas fa-plus"></i></span>
-    </button>
-    <button type="button" class="interest-tag bg-white border border-[#D9D9D9] hover:bg-gray-100 text-[#1E1E1ECC] text-[24px] px-3 py-2 rounded-full text-sm flex items-center" data-interest="blockchain">
-        Blockchain
-        <span class="ml-2 text-blue-500"><i class="fas fa-plus"></i></span>
-    </button>
-    <button type="button" class="interest-tag bg-white border border-[#D9D9D9] hover:bg-gray-100 text-[#1E1E1ECC] text-[24px] px-3 py-2 rounded-full text-sm flex items-center" data-interest="design-and-arts">
-        Design and Arts
-        <span class="ml-2 text-blue-500"><i class="fas fa-plus"></i></span>
-    </button>
-    <button type="button" class="interest-tag bg-white border border-[#D9D9D9] hover:bg-gray-100 text-[#1E1E1ECC] text-[24px] px-3 py-2 rounded-full text-sm flex items-center" data-interest="react-js">
-        React JS
-        <span class="ml-2 text-blue-500"><i class="fas fa-plus"></i></span>
-    </button>
-    <button type="button" class="interest-tag bg-white border border-[#D9D9D9] hover:bg-gray-100 text-[#1E1E1ECC] text-[24px] px-3 py-2 rounded-full text-sm flex items-center" data-interest="react-native">
-        React Native
-        <span class="ml-2 text-blue-500"><i class="fas fa-plus"></i></span>
-    </button>
-</div>
+                    <!-- Interest tags - first row -->
+                    <div class="flex flex-wrap gap-2 mb-3">
+                        <button type="button" class="interest-tag bg-white border border-[#D9D9D9] hover:bg-gray-100 text-[#1E1E1ECC] text-[24px] px-3 py-2 rounded-full text-sm flex items-center" data-interest="artificial-intelligence">
+                            Artificial Intelligence
+                            <span class="ml-2 text-blue-500"><i class="fas fa-plus"></i></span>
+                        </button>
+                        <button type="button" class="interest-tag bg-white border border-[#D9D9D9] hover:bg-gray-100 text-[#1E1E1ECC] text-[24px] px-3 py-2 rounded-full text-sm flex items-center" data-interest="blockchain">
+                            Blockchain
+                            <span class="ml-2 text-blue-500"><i class="fas fa-plus"></i></span>
+                        </button>
+                        <button type="button" class="interest-tag bg-white border border-[#D9D9D9] hover:bg-gray-100 text-[#1E1E1ECC] text-[24px] px-3 py-2 rounded-full text-sm flex items-center" data-interest="design-and-arts">
+                            Design and Arts
+                            <span class="ml-2 text-blue-500"><i class="fas fa-plus"></i></span>
+                        </button>
+                        <button type="button" class="interest-tag bg-white border border-[#D9D9D9] hover:bg-gray-100 text-[#1E1E1ECC] text-[24px] px-3 py-2 rounded-full text-sm flex items-center" data-interest="react-js">
+                            React JS
+                            <span class="ml-2 text-blue-500"><i class="fas fa-plus"></i></span>
+                        </button>
+                        <button type="button" class="interest-tag bg-white border border-[#D9D9D9] hover:bg-gray-100 text-[#1E1E1ECC] text-[24px] px-3 py-2 rounded-full text-sm flex items-center" data-interest="react-native">
+                            React Native
+                            <span class="ml-2 text-blue-500"><i class="fas fa-plus"></i></span>
+                        </button>
+                    </div>
 
-<!-- Interest tags - second row -->
-<div class="flex flex-wrap gap-2 mb-3">
-    <button type="button" class="interest-tag bg-white border border-[#D9D9D9] hover:bg-gray-100 text-[#1E1E1ECC] text-[24px] px-3 py-2 rounded-full text-sm flex items-center" data-interest="app-development">
-        App development
-        <span class="ml-2 text-blue-500"><i class="fas fa-plus"></i></span>
-    </button>
-    <button type="button" class="interest-tag bg-white border border-[#D9D9D9] hover:bg-gray-100 text-[#1E1E1ECC] text-[24px] px-3 py-2 rounded-full text-sm flex items-center" data-interest="virtual-reality-developer">
-        Virtual Reality Developer
-        <span class="ml-2 text-blue-500"><i class="fas fa-plus"></i></span>
-    </button>
-    <button type="button" class="interest-tag bg-white border border-[#D9D9D9] hover:bg-gray-100 text-[#1E1E1ECC] text-[24px] px-3 py-2 rounded-full text-sm flex items-center" data-interest="user-experience-design">
-        User Experience Design
-        <span class="ml-2 text-blue-500"><i class="fas fa-plus"></i></span>
-    </button>
-    <button type="button" class="interest-tag bg-white border border-[#D9D9D9] hover:bg-gray-100 text-[#1E1E1ECC] text-[24px] px-3 py-2 rounded-full text-sm flex items-center" data-interest="data-science">
-        Data Science
-        <span class="ml-2 text-blue-500"><i class="fas fa-plus"></i></span>
-    </button>
-</div>
+                    <!-- Interest tags - second row -->
+                    <div class="flex flex-wrap gap-2 mb-3">
+                        <button type="button" class="interest-tag bg-white border border-[#D9D9D9] hover:bg-gray-100 text-[#1E1E1ECC] text-[24px] px-3 py-2 rounded-full text-sm flex items-center" data-interest="app-development">
+                            App development
+                            <span class="ml-2 text-blue-500"><i class="fas fa-plus"></i></span>
+                        </button>
+                        <button type="button" class="interest-tag bg-white border border-[#D9D9D9] hover:bg-gray-100 text-[#1E1E1ECC] text-[24px] px-3 py-2 rounded-full text-sm flex items-center" data-interest="virtual-reality-developer">
+                            Virtual Reality Developer
+                            <span class="ml-2 text-blue-500"><i class="fas fa-plus"></i></span>
+                        </button>
+                        <button type="button" class="interest-tag bg-white border border-[#D9D9D9] hover:bg-gray-100 text-[#1E1E1ECC] text-[24px] px-3 py-2 rounded-full text-sm flex items-center" data-interest="user-experience-design">
+                            User Experience Design
+                            <span class="ml-2 text-blue-500"><i class="fas fa-plus"></i></span>
+                        </button>
+                        <button type="button" class="interest-tag bg-white border border-[#D9D9D9] hover:bg-gray-100 text-[#1E1E1ECC] text-[24px] px-3 py-2 rounded-full text-sm flex items-center" data-interest="data-science">
+                            Data Science
+                            <span class="ml-2 text-blue-500"><i class="fas fa-plus"></i></span>
+                        </button>
+                    </div>
 
-<!-- Interest tags - third row -->
-<div class="flex flex-wrap gap-2">
-    <button type="button" class="interest-tag bg-white border border-[#D9D9D9] hover:bg-gray-100 text-[#1E1E1ECC] text-[24px] px-3 py-2 rounded-full text-sm flex items-center" data-interest="machine-learning">
-        Machine Learning
-        <span class="ml-2 text-blue-500"><i class="fas fa-plus"></i></span>
-    </button>
-    <button type="button" class="interest-tag bg-white border border-[#D9D9D9] hover:bg-gray-100 text-[#1E1E1ECC] text-[24px] px-3 py-2 rounded-full text-sm flex items-center" data-interest="cloud-computing">
-        Cloud Computing
-        <span class="ml-2 text-blue-500"><i class="fas fa-plus"></i></span>
-    </button>
-    <button type="button" class="interest-tag bg-white border border-[#D9D9D9] hover:bg-gray-100 text-[#1E1E1ECC] text-[24px] px-3 py-2 rounded-full text-sm flex items-center" data-interest="cyber-security">
-        Cyber Security
-        <span class="ml-2 text-blue-500"><i class="fas fa-plus"></i></span>
-    </button>
-    <button type="button" class="interest-tag bg-white border border-[#D9D9D9] hover:bg-gray-100 text-[#1E1E1ECC] text-[24px] px-3 py-2 rounded-full text-sm flex items-center" data-interest="devops">
-        DevOps
-        <span class="ml-2 text-blue-500"><i class="fas fa-plus"></i></span>
-    </button>
-</div>
+                    <!-- Interest tags - third row -->
+                    <div class="flex flex-wrap gap-2">
+                        <button type="button" class="interest-tag bg-white border border-[#D9D9D9] hover:bg-gray-100 text-[#1E1E1ECC] text-[24px] px-3 py-2 rounded-full text-sm flex items-center" data-interest="machine-learning">
+                            Machine Learning
+                            <span class="ml-2 text-blue-500"><i class="fas fa-plus"></i></span>
+                        </button>
+                        <button type="button" class="interest-tag bg-white border border-[#D9D9D9] hover:bg-gray-100 text-[#1E1E1ECC] text-[24px] px-3 py-2 rounded-full text-sm flex items-center" data-interest="cloud-computing">
+                            Cloud Computing
+                            <span class="ml-2 text-blue-500"><i class="fas fa-plus"></i></span>
+                        </button>
+                        <button type="button" class="interest-tag bg-white border border-[#D9D9D9] hover:bg-gray-100 text-[#1E1E1ECC] text-[24px] px-3 py-2 rounded-full text-sm flex items-center" data-interest="cyber-security">
+                            Cyber Security
+                            <span class="ml-2 text-blue-500"><i class="fas fa-plus"></i></span>
+                        </button>
+                        <button type="button" class="interest-tag bg-white border border-[#D9D9D9] hover:bg-gray-100 text-[#1E1E1ECC] text-[24px] px-3 py-2 rounded-full text-sm flex items-center" data-interest="devops">
+                            DevOps
+                            <span class="ml-2 text-blue-500"><i class="fas fa-plus"></i></span>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -331,10 +330,10 @@
             
             <!-- Next/Continue Button and Page Counter -->
             <div class="flex flex-col items-center">
-                <button id="nextBtn" class="bg-[#023564] w-[300px] hover:bg-blue-900 text-white font-medium py-3 px-6 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2   mb-4">
+                <button id="nextBtn" class="bg-[#023564] w-[300px] hover:bg-blue-900 text-white font-medium py-3 px-6 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 mb-4">
                     Next
                 </button>
-                <button id="continueBtn" class="bg-[#023564] hover:bg-blue-900 text-white font-medium py-3 px-6 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 w-[300px]  mb-4 hidden">
+                <button id="continueBtn" class="bg-[#023564] hover:bg-blue-900 text-white font-medium py-3 px-6 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 w-[300px] mb-4 hidden">
                     Continue to App
                 </button>
                 <div id="pageCounter" class="text-[#023564CC] text-sm">
@@ -346,11 +345,13 @@
             <div class="w-4"></div>
         </div>
     </div>
-<!-- <script>
-  document.addEventListener('DOMContentLoaded', function () {
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
     const DEBUG_MODE = true;
     let currentStep = 1;
     const totalSteps = 2;
+    let storedProfileImage = null;
 
     const step1 = document.getElementById('step1');
     const step2 = document.getElementById('step2');
@@ -362,553 +363,287 @@
     init();
 
     function init() {
-      setupEventListeners();
-      initializeInterestTags();
-      initializeFileUploads();
-      updateUI();
-      logDebug('Application initialized');
+        setupEventListeners();
+        initializeInterestTags();
+        initializeFileUploads();
+        updateUI();
+        logDebug('Application initialized');
     }
 
     function setupEventListeners() {
-      nextBtn.addEventListener('click', handleNextStep);
-      continueBtn.addEventListener('click', handleFormSubmission);
-      backBtn.addEventListener('click', handleBackStep);
+        nextBtn.addEventListener('click', handleNextStep);
+        continueBtn.addEventListener('click', handleFormSubmission);
+        backBtn.addEventListener('click', handleBackStep);
     }
 
     async function handleNextStep(e) {
-      e.preventDefault();
-      logDebug('Step 1 submission started');
-      toggleLoading(nextBtn, true);
+        e.preventDefault();
+        logDebug('Step 1 submission started');
+        toggleLoading(nextBtn, true);
 
-      try {
-        const requiredFields = ['name', 'headline', 'city', 'homeland'];
-        const missingFields = validateFields(requiredFields);
+        try {
+            const requiredFields = ['name', 'headline', 'city', 'homeland'];
+            const missingFields = validateFields(requiredFields);
 
-        if (missingFields.length) {
-          throw new Error(`Please fill in: ${missingFields.join(', ')}`);
+            if (missingFields.length) {
+                throw new Error(`Please fill in: ${missingFields.join(', ')}`);
+            }
+
+            const formData = prepareStep1Data();
+            formData.append('action', 'next');
+
+            const data = await submitForm('backend/user_details.php', formData);
+
+            if (data.status === 'success') {
+                currentStep = 2;
+                updateUI();
+                logDebug('Moved to step 2');
+            } else {
+                throw new Error(data.message || 'Failed to proceed to next step');
+            }
+        } catch (error) {
+            logError('Step 1 error:', error.message);
+            showError(error.message);
+        } finally {
+            toggleLoading(nextBtn, false);
         }
-
-        const formData = prepareStep1Data();
-        formData.append('action', 'next');
-
-        const data = await submitForm('backend/user_details.php', formData);
-
-        if (data.status === 'success') {
-          currentStep = 2;
-          updateUI();
-          logDebug('Moved to step 2');
-        } else {
-          throw new Error(data.message || 'Failed to proceed to next step');
-        }
-      } catch (error) {
-        logError('Step 1 error:', error.message);
-        showError(error.message);
-      } finally {
-        toggleLoading(nextBtn, false);
-      }
     }
 
     async function handleFormSubmission(e) {
-      e.preventDefault();
-      logDebug('Final form submission started');
-      toggleLoading(continueBtn, true);
+        e.preventDefault();
+        logDebug('Final form submission started');
+        toggleLoading(continueBtn, true);
 
-      try {
-        const requiredFields = ['name', 'headline'];
-        const missingFields = validateFields(requiredFields);
-        if (missingFields.length) {
-          throw new Error(`Please fill in: ${missingFields.join(', ')}`);
+        try {
+            const requiredFields = ['name', 'headline'];
+            const missingFields = validateFields(requiredFields);
+            if (missingFields.length) {
+                throw new Error(`Please fill in: ${missingFields.join(', ')}`);
+            }
+
+            const formData = prepareStep1Data();
+
+            if (storedProfileImage) {
+                formData.append('profile_image', storedProfileImage);
+                logDebug('Re-appended stored profile image');
+            }
+
+            prepareStep2Data(formData);
+            formData.append('action', 'save');
+
+            const resumeFileInput = document.getElementById('resume-upload');
+            if (!resumeFileInput.files[0]) {
+                throw new Error('Please upload your resume.');
+            }
+
+            const data = await submitForm('backend/user_details.php', formData);
+
+            if (data.status === 'success') {
+                logDebug('Form submission successful');
+                window.location.href = data.redirect || 'dashboard';
+            } else {
+                throw new Error(data.message || 'Submission failed');
+            }
+        } catch (error) {
+            logError('Submission error:', error.message);
+            showError(error.message);
+        } finally {
+            toggleLoading(continueBtn, false);
         }
-
-        const formData = prepareStep1Data();
-        prepareStep2Data(formData);
-        formData.append('action', 'save');
-
-        // Check if resume file is selected
-        const resumeFileInput = document.getElementById('resume-upload');
-        if (!resumeFileInput.files[0]) {
-          throw new Error('Please upload your resume.');
-        }
-
-        const data = await submitForm('backend/user_details.php', formData);
-
-        if (data.status === 'success') {
-          logDebug('Form submission successful');
-          window.location.href = data.redirect || 'dashboard.php';
-        } else {
-          throw new Error(data.message || 'Submission failed');
-        }
-      } catch (error) {
-        logError('Submission error:', error.message);
-        showError(error.message);
-      } finally {
-        toggleLoading(continueBtn, false);
-      }
     }
 
     function handleBackStep(e) {
-      e.preventDefault();
-      if (currentStep > 1) {
-        currentStep--;
-        updateUI();
-        logDebug('Moved back to step 1');
-      }
+        e.preventDefault();
+        if (currentStep > 1) {
+            currentStep--;
+            updateUI();
+            logDebug('Moved back to step 1');
+        }
     }
 
     function prepareStep1Data() {
-      const formData = new FormData();
-      const fields = ['name', 'headline', 'city', 'homeland', 'campus', 'department', 'degree', 'discipline'];
+        const formData = new FormData();
+        const fields = ['name', 'headline', 'city', 'homeland', 'campus', 'department', 'degree', 'discipline'];
 
-      fields.forEach(field => {
-        const el = document.getElementById(field);
-        if (el) {
-          formData.append(field, el.value.trim());
-          logDebug(`Added field ${field}: ${el.value.trim()}`);
+        fields.forEach(field => {
+            const el = document.getElementById(field);
+            if (el) {
+                formData.append(field, el.value.trim());
+                logDebug(`Added field ${field}: ${el.value.trim()}`);
+            }
+        });
+
+        const profileUpload = document.getElementById('profile-upload');
+        if (profileUpload?.files[0]) {
+            storedProfileImage = profileUpload.files[0];
+            formData.append('profile_image', storedProfileImage);
+            logDebug('Added and stored profile image');
         }
-      });
 
-      const profileUpload = document.getElementById('profile-upload');
-      if (profileUpload?.files[0]) {
-        formData.append('profile_image', profileUpload.files[0]);
-        logDebug('Added profile image');
-      }
-
-      return formData;
+        return formData;
     }
 
     function prepareStep2Data(formData) {
-      const resumeUpload = document.getElementById('resume-upload');
-      if (resumeUpload?.files[0]) {
-        formData.append('resume', resumeUpload.files[0]);
-        logDebug('Added resume file');
-      }
+        const resumeUpload = document.getElementById('resume-upload');
+        if (resumeUpload?.files[0]) {
+            formData.append('resume', resumeUpload.files[0]);
+            logDebug('Added resume file');
+        }
 
-      const websiteInput = document.querySelector('input[placeholder="https://domain-name.com"]');
-      if (websiteInput?.value.trim()) {
-        formData.append('website', websiteInput.value.trim());
-        logDebug(`Added website: ${websiteInput.value.trim()}`);
-      }
+        const websiteInput = document.querySelector('input[placeholder="https://domain-name.com"]');
+        if (websiteInput?.value.trim()) {
+            formData.append('website', websiteInput.value.trim());
+            logDebug(`Added website: ${websiteInput.value.trim()}`);
+        }
 
-      ['linkedin', 'behance', 'dribbble', 'flickr'].forEach(field => {
-        const el = document.getElementById(field);
-        formData.append(field, el?.value.trim() || '');
-        logDebug(`Added ${field}: ${el?.value.trim()}`);
-      });
+        ['linkedin', 'behance', 'dribbble', 'flickr'].forEach(field => {
+            const el = document.getElementById(field);
+            formData.append(field, el?.value.trim() || '');
+            logDebug(`Added ${field}: ${el?.value.trim()}`);
+        });
 
-      const selectedInterests = Array.from(document.querySelectorAll('.interest-tag.selected'))
-        .map(tag => tag.dataset.interest)
-        .filter(Boolean);
-      formData.append('interests', JSON.stringify(selectedInterests));
-      logDebug('Added interests:', selectedInterests);
+        const selectedInterests = Array.from(document.querySelectorAll('.interest-tag.selected'))
+            .map(tag => tag.dataset.interest)
+            .filter(Boolean);
+        formData.append('interests', JSON.stringify(selectedInterests));
+        logDebug('Added interests:', selectedInterests);
     }
 
     function validateFields(fields) {
-      return fields.filter(field => {
-        const el = document.getElementById(field);
-        return !el || !el.value.trim();
-      });
+        return fields.filter(field => {
+            const el = document.getElementById(field);
+            return !el || !el.value.trim();
+        });
     }
 
     async function submitForm(url, formData) {
-      logDebug('Submitting form to:', url);
-      const response = await fetch(url, {
-        method: 'POST',
-        body: formData
-      });
+        logDebug('Submitting form to:', url);
+        const response = await fetch(url, {
+            method: 'POST',
+            body: formData
+        });
 
-      const text = await response.text();
+        const text = await response.text();
 
-      try {
-        const data = JSON.parse(text);
-        logDebug('Response data:', data);
-        return data;
-      } catch (error) {
-        logError('Invalid JSON response:', text);
-        throw new Error('Invalid server response');
-      }
+        try {
+            const data = JSON.parse(text);
+            logDebug('Response data:', data);
+            return data;
+        } catch (error) {
+            logError('Invalid JSON response:', text);
+            throw new Error('Invalid server response');
+        }
     }
 
     function updateUI() {
-      pageCounter.textContent = `${currentStep}/${totalSteps}`;
-      if (currentStep === 1) {
-        step1.classList.remove('hidden');
-        step2.classList.add('hidden');
-        nextBtn.classList.remove('hidden');
-        continueBtn.classList.add('hidden');
-        backBtn.classList.add('hidden');
-      } else {
-        step1.classList.add('hidden');
-        step2.classList.remove('hidden');
-        nextBtn.classList.add('hidden');
-        continueBtn.classList.remove('hidden');
-        backBtn.classList.remove('hidden');
-      }
+        pageCounter.textContent = `${currentStep}/${totalSteps}`;
+        if (currentStep === 1) {
+            step1.classList.remove('hidden');
+            step2.classList.add('hidden');
+            nextBtn.classList.remove('hidden');
+            continueBtn.classList.add('hidden');
+            backBtn.classList.add('hidden');
+        } else {
+            step1.classList.add('hidden');
+            step2.classList.remove('hidden');
+            nextBtn.classList.add('hidden');
+            continueBtn.classList.remove('hidden');
+            backBtn.classList.remove('hidden');
+        }
     }
 
     function toggleLoading(button, isLoading) {
-      if (isLoading) {
-        button.disabled = true;
-        button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
-      } else {
-        button.disabled = false;
-        button.textContent = button === continueBtn ? 'Continue to App' : 'Next';
-      }
+        if (isLoading) {
+            button.disabled = true;
+            button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+        } else {
+            button.disabled = false;
+            button.textContent = button === continueBtn ? 'Continue to App' : 'Next';
+        }
     }
 
     function showError(message) {
-      logError('User error:', message);
-      alert(`Error: ${message}`);
+        logError('User error:', message);
+        alert(`Error: ${message}`);
     }
 
     function initializeInterestTags() {
-      document.querySelectorAll('.interest-tag').forEach(tag => {
-        tag.addEventListener('click', function () {
-          this.classList.toggle('selected');
-          const icon = this.querySelector('i');
-          if (icon) {
-            icon.classList.toggle('fa-plus');
-            icon.classList.toggle('fa-check');
-          }
-          this.classList.toggle('bg-blue-100');
-          this.classList.toggle('border-blue-500');
-          logDebug(`Interest toggled: ${this.dataset.interest}`);
+        document.querySelectorAll('.interest-tag').forEach(tag => {
+            tag.addEventListener('click', function () {
+                this.classList.toggle('selected');
+                const icon = this.querySelector('i');
+                if (icon) {
+                    icon.classList.toggle('fa-plus');
+                    icon.classList.toggle('fa-check');
+                }
+                this.classList.toggle('bg-blue-100');
+                this.classList.toggle('border-blue-500');
+                logDebug(`Interest toggled: ${this.dataset.interest}`);
+            });
         });
-      });
     }
 
     function initializeFileUploads() {
-      const profileUpload = document.getElementById('profile-upload');
-      if (profileUpload) {
-        profileUpload.addEventListener('change', function (e) {
-          const file = e.target.files[0];
-          if (!file) return;
-          const reader = new FileReader();
-          reader.onload = function (event) {
-            const uploadArea = profileUpload.closest('div');
-            if (uploadArea) {
-              uploadArea.innerHTML = `
-                <img src="${event.target.result}" class="w-24 h-24 rounded-full object-cover mb-2">
-                <label for="profile-upload" class="cursor-pointer mt-2">
-                  <input type="file" id="profile-upload" class="hidden" accept="image/*">
-                </label>
-              `;
-              initializeFileUploads();
-            }
-          };
-          reader.readAsDataURL(file);
-        });
-      }
+        const profileUpload = document.getElementById('profile-upload');
+        if (profileUpload) {
+            profileUpload.addEventListener('change', function (e) {
+                const file = e.target.files[0];
+                if (!file) return;
+                const allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
+                if (!allowedTypes.includes(file.type)) {
+                    showError('Please upload a JPG, PNG, or GIF file.');
+                    profileUpload.value = '';
+                    return;
+                }
+                storedProfileImage = file;
+                const reader = new FileReader();
+                reader.onload = function (event) {
+                    const uploadArea = profileUpload.closest('div');
+                    if (uploadArea) {
+                        uploadArea.innerHTML = `
+                            <img src="${event.target.result}" class="w-24 h-24 rounded-full object-cover mb-2">
+                            <label for="profile-upload" class="cursor-pointer mt-2">
+                                <input type="file" id="profile-upload" class="hidden" accept=".jpg,.jpeg,.png,.gif">
+                            </label>
+                        `;
+                        initializeFileUploads();
+                    }
+                };
+                reader.readAsDataURL(file);
+            });
+        }
 
-      const resumeUpload = document.getElementById('resume-upload');
-      if (resumeUpload) {
-        resumeUpload.addEventListener('change', function (e) {
-          const file = e.target.files[0];
-          if (!file) return;
-          const fileNameDisplay = document.getElementById('resume-filename');
-          if (fileNameDisplay) {
-            fileNameDisplay.textContent = file.name;
-          }
-        });
-      }
+        const resumeUpload = document.getElementById('resume-upload');
+        if (resumeUpload) {
+            resumeUpload.addEventListener('change', function (e) {
+                const file = e.target.files[0];
+                if (!file) return;
+                const allowedTypes = [
+                    'application/pdf',
+                    'application/msword',
+                    'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+                ];
+                if (!allowedTypes.includes(file.type)) {
+                    showError('Please upload a PDF, DOC, or DOCX file.');
+                    resumeUpload.value = '';
+                    return;
+                }
+                const fileNameDisplay = document.getElementById('resume-filename');
+                if (fileNameDisplay) {
+                    fileNameDisplay.textContent = file.name;
+                }
+            });
+        }
     }
 
     function logDebug(...args) {
-      if (DEBUG_MODE) console.log('[DEBUG]', ...args);
+        if (DEBUG_MODE) console.log('[DEBUG]', ...args);
     }
 
     function logError(...args) {
-      console.error('[ERROR]', ...args);
+        console.error('[ERROR]', ...args);
     }
-  });
-</script> -->
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-  const DEBUG_MODE = true;
-  let currentStep = 1;
-  const totalSteps = 2;
-  let storedProfileImage = null; // 👈 store profile image for step 2
-
-  const step1 = document.getElementById('step1');
-  const step2 = document.getElementById('step2');
-  const nextBtn = document.getElementById('nextBtn');
-  const continueBtn = document.getElementById('continueBtn');
-  const backBtn = document.getElementById('backBtn');
-  const pageCounter = document.getElementById('pageCounter');
-
-  init();
-
-  function init() {
-    setupEventListeners();
-    initializeInterestTags();
-    initializeFileUploads();
-    updateUI();
-    logDebug('Application initialized');
-  }
-
-  function setupEventListeners() {
-    nextBtn.addEventListener('click', handleNextStep);
-    continueBtn.addEventListener('click', handleFormSubmission);
-    backBtn.addEventListener('click', handleBackStep);
-  }
-
-  async function handleNextStep(e) {
-    e.preventDefault();
-    logDebug('Step 1 submission started');
-    toggleLoading(nextBtn, true);
-
-    try {
-      const requiredFields = ['name', 'headline', 'city', 'homeland'];
-      const missingFields = validateFields(requiredFields);
-
-      if (missingFields.length) {
-        throw new Error(`Please fill in: ${missingFields.join(', ')}`);
-      }
-
-      const formData = prepareStep1Data();
-      formData.append('action', 'next');
-
-      const data = await submitForm('backend/user_details.php', formData);
-
-      if (data.status === 'success') {
-        currentStep = 2;
-        updateUI();
-        logDebug('Moved to step 2');
-      } else {
-        throw new Error(data.message || 'Failed to proceed to next step');
-      }
-    } catch (error) {
-      logError('Step 1 error:', error.message);
-      showError(error.message);
-    } finally {
-      toggleLoading(nextBtn, false);
-    }
-  }
-
-  async function handleFormSubmission(e) {
-    e.preventDefault();
-    logDebug('Final form submission started');
-    toggleLoading(continueBtn, true);
-
-    try {
-      const requiredFields = ['name', 'headline'];
-      const missingFields = validateFields(requiredFields);
-      if (missingFields.length) {
-        throw new Error(`Please fill in: ${missingFields.join(', ')}`);
-      }
-
-      const formData = prepareStep1Data();
-
-      // 👇 append stored profile image again if it exists
-      if (storedProfileImage) {
-        formData.append('profile_image', storedProfileImage);
-        logDebug('Re-appended stored profile image');
-      }
-
-      prepareStep2Data(formData);
-      formData.append('action', 'save');
-
-      // Check if resume file is selected
-      const resumeFileInput = document.getElementById('resume-upload');
-      if (!resumeFileInput.files[0]) {
-        throw new Error('Please upload your resume.');
-      }
-
-      const data = await submitForm('backend/user_details.php', formData);
-
-      if (data.status === 'success') {
-        logDebug('Form submission successful');
-        window.location.href = data.redirect || 'dashboard';
-      } else {
-        throw new Error(data.message || 'Submission failed');
-      }
-    } catch (error) {
-      logError('Submission error:', error.message);
-      showError(error.message);
-    } finally {
-      toggleLoading(continueBtn, false);
-    }
-  }
-
-  function handleBackStep(e) {
-    e.preventDefault();
-    if (currentStep > 1) {
-      currentStep--;
-      updateUI();
-      logDebug('Moved back to step 1');
-    }
-  }
-
-  function prepareStep1Data() {
-    const formData = new FormData();
-    const fields = ['name', 'headline', 'city', 'homeland', 'campus', 'department', 'degree', 'discipline'];
-
-    fields.forEach(field => {
-      const el = document.getElementById(field);
-      if (el) {
-        formData.append(field, el.value.trim());
-        logDebug(`Added field ${field}: ${el.value.trim()}`);
-      }
-    });
-
-    const profileUpload = document.getElementById('profile-upload');
-    if (profileUpload?.files[0]) {
-      storedProfileImage = profileUpload.files[0]; // 👈 Save file in global variable
-      formData.append('profile_image', storedProfileImage);
-      logDebug('Added and stored profile image');
-    }
-
-    return formData;
-  }
-
-  function prepareStep2Data(formData) {
-    const resumeUpload = document.getElementById('resume-upload');
-    if (resumeUpload?.files[0]) {
-      formData.append('resume', resumeUpload.files[0]);
-      logDebug('Added resume file');
-    }
-
-    const websiteInput = document.querySelector('input[placeholder="https://domain-name.com"]');
-    if (websiteInput?.value.trim()) {
-      formData.append('website', websiteInput.value.trim());
-      logDebug(`Added website: ${websiteInput.value.trim()}`);
-    }
-
-    ['linkedin', 'behance', 'dribbble', 'flickr'].forEach(field => {
-      const el = document.getElementById(field);
-      formData.append(field, el?.value.trim() || '');
-      logDebug(`Added ${field}: ${el?.value.trim()}`);
-    });
-
-    const selectedInterests = Array.from(document.querySelectorAll('.interest-tag.selected'))
-      .map(tag => tag.dataset.interest)
-      .filter(Boolean);
-    formData.append('interests', JSON.stringify(selectedInterests));
-    logDebug('Added interests:', selectedInterests);
-  }
-
-  function validateFields(fields) {
-    return fields.filter(field => {
-      const el = document.getElementById(field);
-      return !el || !el.value.trim();
-    });
-  }
-
-  async function submitForm(url, formData) {
-    logDebug('Submitting form to:', url);
-    const response = await fetch(url, {
-      method: 'POST',
-      body: formData
-    });
-
-    const text = await response.text();
-
-    try {
-      const data = JSON.parse(text);
-      logDebug('Response data:', data);
-      return data;
-    } catch (error) {
-      logError('Invalid JSON response:', text);
-      throw new Error('Invalid server response');
-    }
-  }
-
-  function updateUI() {
-    pageCounter.textContent = `${currentStep}/${totalSteps}`;
-    if (currentStep === 1) {
-      step1.classList.remove('hidden');
-      step2.classList.add('hidden');
-      nextBtn.classList.remove('hidden');
-      continueBtn.classList.add('hidden');
-      backBtn.classList.add('hidden');
-    } else {
-      step1.classList.add('hidden');
-      step2.classList.remove('hidden');
-      nextBtn.classList.add('hidden');
-      continueBtn.classList.remove('hidden');
-      backBtn.classList.remove('hidden');
-    }
-  }
-
-  function toggleLoading(button, isLoading) {
-    if (isLoading) {
-      button.disabled = true;
-      button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
-    } else {
-      button.disabled = false;
-      button.textContent = button === continueBtn ? 'Continue to App' : 'Next';
-    }
-  }
-
-  function showError(message) {
-    logError('User error:', message);
-    alert(`Error: ${message}`);
-  }
-
-  function initializeInterestTags() {
-    document.querySelectorAll('.interest-tag').forEach(tag => {
-      tag.addEventListener('click', function () {
-        this.classList.toggle('selected');
-        const icon = this.querySelector('i');
-        if (icon) {
-          icon.classList.toggle('fa-plus');
-          icon.classList.toggle('fa-check');
-        }
-        this.classList.toggle('bg-blue-100');
-        this.classList.toggle('border-blue-500');
-        logDebug(`Interest toggled: ${this.dataset.interest}`);
-      });
-    });
-  }
-
-  function initializeFileUploads() {
-    const profileUpload = document.getElementById('profile-upload');
-    if (profileUpload) {
-      profileUpload.addEventListener('change', function (e) {
-        const file = e.target.files[0];
-        if (!file) return;
-        storedProfileImage = file; // 👈 save file globally
-        const reader = new FileReader();
-        reader.onload = function (event) {
-          const uploadArea = profileUpload.closest('div');
-          if (uploadArea) {
-            uploadArea.innerHTML = `
-              <img src="${event.target.result}" class="w-24 h-24 rounded-full object-cover mb-2">
-              <label for="profile-upload" class="cursor-pointer mt-2">
-                <input type="file" id="profile-upload" class="hidden" accept="image/*">
-              </label>
-            `;
-            initializeFileUploads();
-          }
-        };
-        reader.readAsDataURL(file);
-      });
-    }
-
-    const resumeUpload = document.getElementById('resume-upload');
-    if (resumeUpload) {
-      resumeUpload.addEventListener('change', function (e) {
-        const file = e.target.files[0];
-        if (!file) return;
-        const fileNameDisplay = document.getElementById('resume-filename');
-        if (fileNameDisplay) {
-          fileNameDisplay.textContent = file.name;
-        }
-      });
-    }
-  }
-
-  function logDebug(...args) {
-    if (DEBUG_MODE) console.log('[DEBUG]', ...args);
-  }
-
-  function logError(...args) {
-    console.error('[ERROR]', ...args);
-  }
 });
 </script>
-
-
-
-
 </body>
 </html>
