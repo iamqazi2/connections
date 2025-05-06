@@ -21,11 +21,12 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
 // Check if the profile image is available and update the path
 if ($row && !empty($row['profile_image'])) {
     // If an image exists, use the path stored in the database
-    $profilePicturePath = "backend/" . $row['profile_image']; // Assuming images are stored in "uploads/profiles/"
+    $profilePicturePath =   $row['profile_image']; // Assuming images are stored in "uploads/profiles/"
 } else {
     // If no image is found, the default profile image will be used
     $profilePicturePath = "images/default-profile.jpg"; // Default image
 }
+
 
 ?>
 
@@ -37,32 +38,42 @@ if ($row && !empty($row['profile_image'])) {
   <title>ConnectIn Dashboard</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
   <link href="output.css" rel="stylesheet"/>
-  <link href="styles.css" rel="stylesheet"/></head>
+  <link href="styles.css" rel="stylesheet"/>
+  <style>
+    .seacrh{
+      width:320px;
+      height:54px;
+    }
+    .ul li a{
+      color:rgba(63, 139, 201, 0.5);
+    }
+  </style>
+</head>
 <body>
 
 <!-- Navbar -->
 <nav class="text-white bg ">
-  <div class="container mx-auto flex justify-between items-center py-4 px-6">
+  <div class=" mx-auto flex justify-between items-center py-4 px-6">
     
     <!-- Logo and Search -->
     <div class="flex items-center space-x-4">
-      <img src="images/logo.svg" alt="Logo" class="h-14 w-14" />
+      <img src="images/logo.svg" alt="Logo" class="h-24 w-24" />
       <div class="relative">
         <input 
           type="text" 
           placeholder="Search..." 
-          class="text-sm text-black rounded-full px-6 py-2 focus:outline-none focus:ring focus:ring-gray-100"
+          class="text-sm text-black seacrh rounded-full px-6 py-2 focus:outline-none focus:ring focus:ring-gray-100"
           style="background-color: #C9DCEF;" />
         <img class="absolute right-4 top-1/2 transform -translate-y-1/2 h-8 w-8 text-gray-600" src="images/search.svg" />
       </div>
     </div>
 
     <!-- Navbar Menu -->
-    <ul class="flex space-x-6">
+    <ul class="flex ul space-x-20">
       <li><a href="#" class="flex flex-col items-center text-gray-800 hover:text-blue-400"><img src="images/icons.svg"><span class="text-xs">Home</span></a></li>
       <li><a href="#" class="flex flex-col items-center text-gray-800 hover:text-blue-400"><img src="images/icons1.svg"><span class="text-xs">Explore</span></a></li>
       <li><a href="#" class="flex flex-col items-center text-gray-800 hover:text-blue-400"><img src="images/icons2.svg"><span class="text-xs">My Portals</span></a></li>
-      <li><a href="#" class="flex flex-col items-center text-gray-800 hover:text-blue-400"><img src="images/icons3.svg"><span class="text-xs">Messages</span></a></li>
+      <!-- <li><a href="#" class="flex flex-col items-center text-gray-800 hover:text-blue-400"><img src="images/icons3.svg"><span class="text-xs">Messages</span></a></li> -->
       <li><a href="#" class="flex flex-col items-center text-gray-800 hover:text-blue-400"><img src="images/icons4.svg"><span class="text-xs">Notifications</span></a></li>
       <li><a href="#" class="flex flex-col items-center text-gray-800 hover:text-blue-400"><img src="images/icons5.svg" class="h-10"><span class="text-xs">Add Post</span></a></li>
     </ul>

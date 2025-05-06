@@ -286,7 +286,7 @@ function publicPath($path) {
           </div>
         </div>
       </div>
-
+     
       <!-- Resume Section -->
       <div class="bg-white rounded-lg shadow-md p-5">
         <div class="flex justify-between items-center mb-4">
