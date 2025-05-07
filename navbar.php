@@ -75,7 +75,7 @@ if ($userId === 0) {
     
     <!-- Logo and Search -->
     <div class="flex items-center space-x-4">
-      <img src="images/logo.svg" alt="Logo" class="h-24 w-24" />
+      <a href="dashboard.php"><img src="images/logo.svg" alt="Logo" class="h-24 w-24" /></a>
       <div class="relative">
         <input 
           type="text" 
@@ -88,7 +88,7 @@ if ($userId === 0) {
 
     <!-- Navbar Menu -->
     <ul class="flex ul space-x-20">
-      <li><a href="#" class="flex flex-col items-center text-gray-800 hover:text-blue-400"><img src="images/icons.svg"><span class="text-xs">Home</span></a></li>
+      <li><a href="dashboard.php" class="flex flex-col items-center text-gray-800 hover:text-blue-400"><img src="images/icons.svg"><span class="text-xs">Home</span></a></li>
       <li><a href="#" class="flex flex-col items-center text-gray-800 hover:text-blue-400"><img src="images/icons1.svg"><span class="text-xs">Explore</span></a></li>
       <li><a href="#" class="flex flex-col items-center text-gray-800 hover:text-blue-400"><img src="images/icons2.svg"><span class="text-xs">My Portals</span></a></li>
       <!-- <li><a href="#" class="flex flex-col items-center text-gray-800 hover:text-blue-400"><img src="images/icons3.svg"><span class="text-xs">Messages</span></a></li> -->

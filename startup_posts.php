@@ -13,34 +13,34 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Query to fetch all opportunities from the database, join with user_details table
-// First, let's check what columns exist in opportunity table
-$check_sql = "DESCRIBE opportunity";
+// Query to fetch all startups from the database, join with user_details table
+// First, let's check what columns exist in startup table
+$check_sql = "DESCRIBE startup";
 $check_result = $conn->query($check_sql);
-$opportunity_columns = [];
+$startup_columns = [];
 
 if ($check_result && $check_result->num_rows > 0) {
     while($column = $check_result->fetch_assoc()) {
-        $opportunity_columns[] = $column['Field'];
+        $startup_columns[] = $column['Field'];
         echo "<!-- Found column: " . $column['Field'] . " -->";
     }
 }
 
 // Build the SQL query based on available columns
-if (in_array('user_id', $opportunity_columns)) {
-    $sql = "SELECT o.*, ud.profile_image, ud.name as username FROM opportunity o 
-            LEFT JOIN user_details ud ON o.user_id = ud.user_id 
-            ORDER BY o.id ASC";
-} else if (in_array('created_by', $opportunity_columns)) {
-    $sql = "SELECT o.*, ud.profile_image, ud.name as username FROM opportunity o 
-            LEFT JOIN user_details ud ON o.created_by = ud.user_id 
-            ORDER BY o.id ASC";
+if (in_array('user_id', $startup_columns)) {
+    $sql = "SELECT s.*, ud.profile_image, ud.name as username FROM startup s 
+            LEFT JOIN user_details ud ON s.user_id = ud.user_id 
+            ORDER BY s.id ASC";
+} else if (in_array('created_by', $startup_columns)) {
+    $sql = "SELECT s.*, ud.profile_image, ud.name as username FROM startup s 
+            LEFT JOIN user_details ud ON s.created_by = ud.user_id 
+            ORDER BY s.id ASC";
 } else {
     // Fallback: Still try to join with user_details using a possible user_id match
-    $sql = "SELECT o.*, ud.profile_image, ud.name as username FROM opportunity o 
-            LEFT JOIN user_details ud ON o.id = ud.user_id 
-            ORDER BY o.id ASC";
-    echo "<!-- Warning: Could not find user_id or created_by column in opportunity table, attempting fallback join -->";
+    $sql = "SELECT s.*, ud.profile_image, ud.name as username FROM startup s 
+            LEFT JOIN user_details ud ON s.id = ud.user_id 
+            ORDER BY s.id ASC";
+    echo "<!-- Warning: Could not find user_id or created_by column in startup table, attempting fallback join -->";
 }
 
 $result = $conn->query($sql);
@@ -50,10 +50,7 @@ if (!$result) {
     echo "Error: " . $conn->error;
 }
 ?>
-<?php  
-$directory = "backend/";
-$baseUrl = $directory; 
-?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -73,7 +70,8 @@ $baseUrl = $directory;
         body {
             background-color: #f5f5f5;
         }
-        
+
+        /* Add your styles here for the project card */
         .project-card {
             margin: 20px auto;
             background-color: #fff;
@@ -89,13 +87,16 @@ $baseUrl = $directory;
             padding: 15px 20px;
             border-bottom: 1px solid #f2f2f2;
         }
-        
+
         .info-tag {
             display: flex;
             align-items: center;
             gap: 8px;
         }
-        
+
+        .question{
+            color:#4299e1;
+        }
         .info-icon {
             width: 26px;
             height: 26px;
@@ -107,36 +108,29 @@ $baseUrl = $directory;
             color: #718096;
             font-size: 14px;
         }
-        
+
         .info-text {
             color: #f8972b;
             font-size: 16px;
             font-weight: 500;
         }
-        
+
         .created-by {
             display: flex;
             align-items: center;
             gap: 8px;
         }
-        
-        .author-image {
-            width: 35px;
-            height: 35px;
-            border-radius: 50%;
-            object-fit: cover;
-        }
-        
+
         .author-name {
             color: #2d3748;
             font-weight: 600;
             font-size: 14px;
         }
-        
+
         .project-content {
             padding: 15px 20px;
         }
-        
+
         .project-title {
             color: #1a365d;
             font-size: 18px;
@@ -144,7 +138,7 @@ $baseUrl = $directory;
             margin-bottom: 10px;
             line-height: 1.3;
         }
-        
+
         .project-avatar {
             width: 70px;
             height: 70px;
@@ -153,57 +147,38 @@ $baseUrl = $directory;
             margin-right: 15px;
             float: left;
         }
-        
+
         .focus-tags {
             display: flex;
             flex-wrap: wrap;
             gap: 8px;
             margin: 12px 0;
         }
-        
+
         .focus-tag {
             display: flex;
             align-items: center;
             gap: 5px;
         }
-        
+
         .tag-dot {
             width: 8px;
             height: 8px;
             border-radius: 50%;
         }
-        
+
         .tag-text {
             font-size: 14px;
             color: #4299e1;
         }
-        
-        .time-tag {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            margin-top: 8px;
-        }
-        
-        .time-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background-color: #a0aec0;
-        }
-        
-        .time-text {
-            font-size: 14px;
-            color: #a0aec0;
-        }
-        
+
         .project-description {
             color: #4a5568;
             font-size: 14px;
             line-height: 1.6;
             margin: 15px 0;
         }
-        
+
         .more-link {
             text-align: right;
             font-size: 14px;
@@ -211,194 +186,14 @@ $baseUrl = $directory;
             text-decoration: none;
             display: block;
         }
-        
-        .project-image {
-            width: 100%;
-            height: auto;
-            background-color: #f9f7f2;
-            border-top: 1px solid #f2f2f2;
-            overflow: hidden;
-        }
 
-        .project-image img {
-            width: 100%;
-            height: auto;
-            object-fit: cover;
-        }
-        
-        .design-image {
-            position: relative;
-            background-color: #f9f7f2;
-            height: 300px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-        }
-        
-        .design-pattern {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background-image: url('pattern-bg.png');
-            background-size: cover;
-            opacity: 0.7;
-        }
-        
-        .design-content {
-            position: relative;
-            background-color: rgba(255, 255, 255, 0.85);
-            border-radius: 10px;
-            padding: 30px;
-            text-align: center;
-            width: 60%;
-            max-width: 350px;
-        }
-        
-        .freelance-text {
-            font-size: 26px;
-            color: #4a5568;
-            font-weight: 300;
-        }
-        
-        .project-text {
-            font-size: 50px;
-            font-weight: 800;
-            color: #2d3748;
-            text-transform: uppercase;
-            line-height: 1;
-            margin-top: 5px;
-        }
-        
-        .apply-button {
-            display: inline-block;
-            background-color: #e9da73;
-            color: #4a5568;
-            font-size: 14px;
-            font-weight: 500;
-            padding: 6px 16px;
-            border-radius: 20px;
-            margin-top: 15px;
-            text-decoration: none;
-        }
-        
-        .notebook-edge {
-            position: absolute;
-            left: 0;
-            top: 0;
-            height: 100%;
-            width: 35px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-evenly;
-            padding: 20px 0;
-        }
-        
-        .notebook-hole {
-            width: 20px;
-            height: 20px;
-            background-color: #4a5568;
-            border-radius: 50%;
-            opacity: 0.3;
-        }
-        
-        .card-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 20px;
-            border-top: 1px solid #f2f2f2;
-        }
-        
-        .like-section {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-        
-        .like-avatars {
-            display: flex;
-            align-items: center;
-        }
-        
-        .like-avatar {
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 2px solid #fff;
-            margin-right: -8px;
-        }
-        
-        .like-text {
-            font-size: 14px;
-            color: #4a5568;
-        }
-        
-        .comment-count {
-            font-size: 14px;
-            color: #4a5568;
-        }
-        
-        .action-buttons {
-            display: flex;
-            justify-content: space-between;
-            padding: 10px 20px;
-            border-top: 1px solid #f2f2f2;
-        }
-        
-        .action-button {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            color: #2d3748;
-            font-size: 14px;
-            text-decoration: none;
-            padding: 5px 10px;
-        }
-        
-        .action-button i {
-            font-size: 18px;
-        }
-        
-        .more-options {
-            font-size: 18px;
-            color: #4a5568;
-        }
-
-        .apply-top-button {
-            display: flex;
-            align-items: center;
-            background-color: #fff;
-            border: 1px solid #2d3748;
-            border-radius: 25px;
-            padding: 8px 15px;
-            text-decoration: none;
-            color: #2d3748;
-            font-weight: 500;
-        }
-
-        .download-icon {
-            margin-left: 5px;
-            font-size: 16px;
-        }
-        
-        .plus-more {
-            background-color: #e2e8f0;
-            color: #4a5568;
-            font-size: 12px;
-            padding: 2px 5px;
-            border-radius: 3px;
-        }
-
-        /* Apply button style in front of description */
         .apply-btn-container {
             display: flex;
             justify-content: flex-end;
             margin-top: 10px;
             margin-bottom: 15px;
         }
-        
+
         .apply-btn {
             display: flex;
             align-items: center;
@@ -412,24 +207,9 @@ $baseUrl = $directory;
             font-weight: 500;
             gap: 8px;
         }
-        
+
         .apply-btn i {
             font-size: 16px;
-        }
-
-        /* Responsive adjustments */
-        @media (max-width: 600px) {
-            .design-content {
-                width: 80%;
-            }
-            
-            .freelance-text {
-                font-size: 20px;
-            }
-            
-            .project-text {
-                font-size: 36px;
-            }
         }
     </style>
 </head>
@@ -496,18 +276,32 @@ $baseUrl = $directory;
                 <div class="info-icon">
                     <i class="fas fa-info"></i>
                 </div>
-                <div class="info-text"><?php echo htmlspecialchars($row["listing_type"] ?? 'Freelancing Project'); ?></div>
+                <div class="info-text"><?php echo htmlspecialchars($row["listing_type"] ?? 'Startup Project'); ?></div>
             </div>
             <div class="created-by">
                 <span>Created by</span>
                 <span class="author-name cursor-pointer"><?php echo htmlspecialchars($row["username"] ?? $row["company"] ?? 'Abdullah Tajammal'); ?></span>
-
             </div>
         </div>
         
         <div class="project-content">
-            <img src="<?php echo htmlspecialchars($baseUrl . ($row["media_path"] ?? 'ai-image.jpg')); ?>" alt="Project" class="project-avatar">
-            <h2 class="project-title"><?php echo htmlspecialchars($row["title"] ?? 'Freelancing Project'); ?></h2>
+            <?php
+            $media_path = $row["media_path"] ?? null;
+            $image_extensions = ['jpg', 'jpeg', 'png', 'svg'];
+            $full_media_url = $media_path ?  $media_path : 'ai-image.jpg';
+            $file_extension = $media_path ? strtolower(pathinfo($media_path, PATHINFO_EXTENSION)) : '';
+            ?>
+            <?php if ($media_path && in_array($file_extension, $image_extensions)): ?>
+                <img src="<?php echo htmlspecialchars($full_media_url); ?>" alt="Project" class="project-avatar">
+            <?php elseif ($media_path): ?>
+                <a href="<?php echo htmlspecialchars($full_media_url); ?>" download class="project-avatar" style="display: inline-block; text-decoration: none; color: #2d3748;">
+                    <i class="fas fa-file" style="font-size: 50px;"></i>
+                    <span style="font-size: 12px;"><?php echo htmlspecialchars(basename($media_path)); ?></span>
+                </a>
+            <?php else: ?>
+                <img src="ai-image.jpg" alt="Project" class="project-avatar">
+            <?php endif; ?>
+            <h2 class="project-title"><?php echo htmlspecialchars($row["title"] ?? 'Startup Project'); ?></h2>
             
             <div class="focus-tags">
                 <?php 
@@ -541,13 +335,12 @@ $baseUrl = $directory;
             </div>
             
             <!-- Apply button added here, before the description -->
-            <!-- In your post card UI, change the apply button to: -->
-<div class="apply-btn-container">
-    <a href="apply_job.php?id=<?php echo $row['id']; ?>" class="apply-btn">
-        <span>Apply</span>
-        <i class="fas fa-download"></i>
-    </a>
-</div>
+            <div class="apply-btn-container">
+                <a href="enroll_research.php" class="apply-btn">
+                    <span>Enroll</span>
+                    <img src="./images/plus.svg"/>
+                </a>
+            </div>
             
             <p class="project-description">
                 <?php 
@@ -560,10 +353,33 @@ $baseUrl = $directory;
                 }
                 ?>
             </p>
+    <?php if (!empty($row['questions'])): ?>
+        <div class="questions-container">
+            <ul class="question">
+                <?php 
+                $questions = json_decode($row['questions'], true); // Assuming it's a JSON array
+                if (is_array($questions)) {
+                    foreach ($questions as $question) {
+                        echo "<li>" . htmlspecialchars($question) . "</li>";
+                    }
+                }
+                ?>
+            </ul>
+        </div>
+    <?php endif; ?>
         </div>
         
         <div class="project-image">
-            <img src="<?php echo htmlspecialchars($baseUrl . ($row["media_path"] ?? 'ai-image.jpg')); ?>" />
+            <?php if ($media_path && in_array($file_extension, $image_extensions)): ?>
+                <img src="<?php echo htmlspecialchars($full_media_url); ?>" alt="Project">
+            <?php elseif ($media_path): ?>
+                <a href="<?php echo htmlspecialchars($full_media_url); ?>" download style="display: block; text-align: center; padding: 20px; text-decoration: none; color: #2d3748;">
+                    <i class="fas fa-file" style="font-size: 50px;"></i>
+                    <p>Download <?php echo htmlspecialchars(basename($media_path)); ?> (<?php echo strtoupper($file_extension); ?>)</p>
+                </a>
+            <?php else: ?>
+                <img src="ai-image.jpg" alt="Project">
+            <?php endif; ?>
         </div>
         
         <div class="card-footer">
@@ -606,7 +422,7 @@ $baseUrl = $directory;
     <?php
         }
     } else {
-        echo "<p style='text-align: center; margin-top: 50px;'>No freelancing projects found</p>";
+        echo "<p style='text-align: center; margin-top: 50px;'>No startup projects found</p>";
     }
     
     $conn->close();

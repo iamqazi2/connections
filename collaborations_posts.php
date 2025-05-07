@@ -13,34 +13,34 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Query to fetch all opportunities from the database, join with user_details table
-// First, let's check what columns exist in opportunity table
-$check_sql = "DESCRIBE opportunity";
+// Query to fetch all collaborations from the database, join with user_details table
+// First, let's check what columns exist in collaborations_tables_new table
+$check_sql = "DESCRIBE collaborations_tables_new";
 $check_result = $conn->query($check_sql);
-$opportunity_columns = [];
+$collaboration_columns = [];
 
 if ($check_result && $check_result->num_rows > 0) {
     while($column = $check_result->fetch_assoc()) {
-        $opportunity_columns[] = $column['Field'];
+        $collaboration_columns[] = $column['Field'];
         echo "<!-- Found column: " . $column['Field'] . " -->";
     }
 }
 
 // Build the SQL query based on available columns
-if (in_array('user_id', $opportunity_columns)) {
-    $sql = "SELECT o.*, ud.profile_image, ud.name as username FROM opportunity o 
+if (in_array('user_id', $collaboration_columns)) {
+    $sql = "SELECT o.*, ud.profile_image, ud.name as username FROM collaborations_tables_new o 
             LEFT JOIN user_details ud ON o.user_id = ud.user_id 
             ORDER BY o.id ASC";
-} else if (in_array('created_by', $opportunity_columns)) {
-    $sql = "SELECT o.*, ud.profile_image, ud.name as username FROM opportunity o 
+} else if (in_array('created_by', $collaboration_columns)) {
+    $sql = "SELECT o.*, ud.profile_image, ud.name as username FROM collaborations_tables_new o 
             LEFT JOIN user_details ud ON o.created_by = ud.user_id 
             ORDER BY o.id ASC";
 } else {
     // Fallback: Still try to join with user_details using a possible user_id match
-    $sql = "SELECT o.*, ud.profile_image, ud.name as username FROM opportunity o 
+    $sql = "SELECT o.*, ud.profile_image, ud.name as username FROM collaborations_tables_new o 
             LEFT JOIN user_details ud ON o.id = ud.user_id 
             ORDER BY o.id ASC";
-    echo "<!-- Warning: Could not find user_id or created_by column in opportunity table, attempting fallback join -->";
+    echo "<!-- Warning: Could not find user_id or created_by column in collaborations_tables_new table, attempting fallback join -->";
 }
 
 $result = $conn->query($sql);
@@ -50,10 +50,7 @@ if (!$result) {
     echo "Error: " . $conn->error;
 }
 ?>
-<?php  
-$directory = "backend/";
-$baseUrl = $directory; 
-?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -282,7 +279,7 @@ $baseUrl = $directory;
             text-decoration: none;
         }
         
-        .notebook-edge {
+        .notebook tn-edge {
             position: absolute;
             left: 0;
             top: 0;
@@ -501,12 +498,26 @@ $baseUrl = $directory;
             <div class="created-by">
                 <span>Created by</span>
                 <span class="author-name cursor-pointer"><?php echo htmlspecialchars($row["username"] ?? $row["company"] ?? 'Abdullah Tajammal'); ?></span>
-
             </div>
         </div>
         
         <div class="project-content">
-            <img src="<?php echo htmlspecialchars($baseUrl . ($row["media_path"] ?? 'ai-image.jpg')); ?>" alt="Project" class="project-avatar">
+            <?php
+            $media_path = $row["media_path"] ?? null;
+            $image_extensions = ['jpg', 'jpeg', 'png', 'svg'];
+            $full_media_url = $media_path ?  $media_path : 'ai-image.jpg';
+            $file_extension = $media_path ? strtolower(pathinfo($media_path, PATHINFO_EXTENSION)) : '';
+            ?>
+            <?php if ($media_path && in_array($file_extension, $image_extensions)): ?>
+                <img src="<?php echo htmlspecialchars($full_media_url); ?>" alt="Project" class="project-avatar">
+            <?php elseif ($media_path): ?>
+                <a href="<?php echo htmlspecialchars($full_media_url); ?>" download class="project-avatar" style="display: inline-block; text-decoration: none; color: #2d3748;">
+                    <i class="fas fa-file" style="font-size: 50px;"></i>
+                    <span style="font-size: 12px;"><?php echo htmlspecialchars(basename($media_path)); ?></span>
+                </a>
+            <?php else: ?>
+                <img src="ai-image.jpg" alt="Project" class="project-avatar">
+            <?php endif; ?>
             <h2 class="project-title"><?php echo htmlspecialchars($row["title"] ?? 'Freelancing Project'); ?></h2>
             
             <div class="focus-tags">
@@ -541,13 +552,12 @@ $baseUrl = $directory;
             </div>
             
             <!-- Apply button added here, before the description -->
-            <!-- In your post card UI, change the apply button to: -->
-<div class="apply-btn-container">
-    <a href="apply_job.php?id=<?php echo $row['id']; ?>" class="apply-btn">
-        <span>Apply</span>
-        <i class="fas fa-download"></i>
-    </a>
-</div>
+            <div class="apply-btn-container">
+                <a href="enroll_research.php" class="apply-btn">
+                    <span>Enroll</span>
+                    <img src="./images/plus.svg"/>
+                </a>
+            </div>
             
             <p class="project-description">
                 <?php 
@@ -563,7 +573,16 @@ $baseUrl = $directory;
         </div>
         
         <div class="project-image">
-            <img src="<?php echo htmlspecialchars($baseUrl . ($row["media_path"] ?? 'ai-image.jpg')); ?>" />
+            <?php if ($media_path && in_array($file_extension, $image_extensions)): ?>
+                <img src="<?php echo htmlspecialchars($full_media_url); ?>" alt="Project">
+            <?php elseif ($media_path): ?>
+                <a href="<?php echo htmlspecialchars($full_media_url); ?>" download style="display: block; text-align: center; padding: 20px; text-decoration: none; color: #2d3748;">
+                    <i class="fas fa-file" style="font-size: 50px;"></i>
+                    <p>Download <?php echo htmlspecialchars(basename($media_path)); ?> (<?php echo strtoupper($file_extension); ?>)</p>
+                </a>
+            <?php else: ?>
+                <img src="ai-image.jpg" alt="Project">
+            <?php endif; ?>
         </div>
         
         <div class="card-footer">

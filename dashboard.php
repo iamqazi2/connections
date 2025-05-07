@@ -58,7 +58,21 @@ if ($userId === 0) {
   <title>Home</title>
   <style>
      .sidebar-container {
-      width: 25%;
+      width: 100% !important;
+      background-color: white;
+      box-shadow: 0 10px 15px -3px rgba(63, 139, 201, 0.5), 0 4px 6px -2px rgba(63, 139, 201, 0.25) !important;
+      padding: 1rem;
+      border: 1px solid rgba(63, 139, 201, 0.5); 
+      border-radius: 0.5rem;
+      height: fit-content !important;
+      margin-top:30px;
+    }
+    .hidden {
+  display: none;
+}
+
+    .sidebar-containers {
+      width: 25% !important;
       background-color: white;
       box-shadow: 0 10px 15px -3px rgba(63, 139, 201, 0.5), 0 4px 6px -2px rgba(63, 139, 201, 0.25) !important;
       padding: 1rem;
@@ -72,6 +86,12 @@ if ($userId === 0) {
     .borders{
         border:1px solid rgba(63, 139, 201, 0.5) !important;
     }
+    .column{
+      display:flex;
+      flex-direction:column;
+      
+    }
+    
   </style>
 </head>
 <body class="bg">
@@ -83,12 +103,15 @@ if ($userId === 0) {
   <?php include 'navbar.php'; ?>
 
   <!-- Main Layout -->
-  <div class="flex space-x-4 p-4 h-screen">
+  <div class="flex   space-x-4 p-4 h-screen">
+    
+  
+ <div class="column">
+   <?php include 'side-bar-feeds.php'; ?>
+   <?php include 'left-sidebar.php'; ?>
     
     <!-- Left Sidebar -->
-    <div style="
-    
-    "
+    <!-- <div 
      class="w-1/4 sidebar-container bg-white !shadow-lg !shadow-[#3F8BC9] p-4 border border-[#3F8BC9] rounded-lg !h-[340px] overflow-y-auto">
       <ul class="space-y-4 mt-10">
          <li class="flex items-center space-x-3 hover:bg-gray-100 p-4 rounded-lg cursor-pointer">
@@ -112,7 +135,8 @@ if ($userId === 0) {
           <span class="text-gray-500 font-medium">New Collaborations</span>
         </li>
       </ul>
-    </div>
+    </div> -->
+ </div>
 
     <!-- Center Container -->
     <div class="w-1/2 ">
@@ -133,18 +157,50 @@ if ($userId === 0) {
         </div>
 
         <div class="h-full overflow-y-auto">
-            <!-- Post Cards -->
-        <?php include 'simple_posts.php'; ?>
-        <?php include 'job_posts.php'; ?>
+         <div id="all-posts" class="post-section">
+  <?php include 'startup_posts.php'; ?>
+  <?php include 'collaborations_posts.php'; ?>
+  <?php include 'job_posts.php'; ?>
+  <?php include 'simple_posts.php'; ?>
+</div>
+
+<div id="simple-posts" class="post-section hidden">
+  <?php include 'simple_posts.php'; ?>
+</div>
+
+<div id="job-posts" class="post-section hidden">
+  <?php include 'job_posts.php'; ?>
+</div>
+
+<div id="startup-posts" class="post-section hidden">
+  <?php include 'startup_posts.php'; ?>
+</div>
+
+<div id="collaboration-posts" class="post-section hidden">
+  <?php include 'collaborations_posts.php'; ?>
+</div>
+
         </div>
       </div>
     </div>
 
     <!-- Right Section -->
-    <div class="w-1/4 sidebar-container  bg-white p-4 h-full overflow-y-auto">
+    <div class="w-1/4 sidebar-containers  bg-white p-4 h-full overflow-y-auto">
        <?php include 'explore_ui.php'; ?>
     </div>
 
   </div>
+  <script>
+  document.querySelectorAll('.sidebar-container li').forEach(item => {
+    item.addEventListener('click', () => {
+      const target = item.getAttribute('data-target');
+      document.querySelectorAll('.post-section').forEach(section => {
+        section.classList.add('hidden');
+      });
+      document.getElementById(target).classList.remove('hidden');
+    });
+  });
+</script>
+
 </body>
 </html>

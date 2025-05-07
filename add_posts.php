@@ -8,19 +8,24 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+      <style>
+        .widthss{
+            width:30%;
+        }
+    </style>
 </head>
 <body class="bg-gray-100 font-sans">
     <?php include 'navbar.php'; ?>
 
     <div class="flex min-h-screen">
         <!-- Left Sidebar -->
-        <div class="w-64 bg-white p-6 border-r border-gray-200">
+        <div class="widthss p-6 ">
             <?php include 'left-sidebar.php'; ?>
         </div>
         
         <!-- Main Content -->
         <div class="flex-1 p-6">
-            <div class="max-w-2xl mx-auto bg-white rounded-lg shadow-sm">
+            <div class=" mx-auto p-4 bg-white rounded-lg shadow-sm">
                 <div class="p-6">
                     <h1 class="text-2xl font-bold text-center text-blue-900">Adding Post</h1>
                     <p class="text-gray-500 text-center text-sm mt-1">Share updates and post anything you want to share with your connections</p>

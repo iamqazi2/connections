@@ -11,6 +11,7 @@ require_once __DIR__ . '/../connection.php';
 // Validate session data
 if (!isset($_SESSION['collaboration'])) {
     $_SESSION['error'] = "No collaboration data found. Please start over.";
+    error_log("Error: No collaboration session data");
     header("Location: ../collaboration.php");
     exit();
 }
@@ -18,6 +19,7 @@ if (!isset($_SESSION['collaboration'])) {
 // Check if user is logged in
 if (!isset($_SESSION['user_id'])) {
     $_SESSION['error'] = "You must be logged in to post a collaboration.";
+    error_log("Error: No user_id in session");
     header("Location: ../collaboration.php");
     exit();
 }
@@ -31,17 +33,24 @@ $only_connections = isset($collaboration['only_connections']) ? (int)$collaborat
 $request_to_join = isset($collaboration['request_to_join']) ? (int)$collaboration['request_to_join'] : 0;
 $enable_max_limit = isset($collaboration['enable_max_limit']) ? (int)$collaboration['enable_max_limit'] : 0;
 $media_path = $collaboration['media'] ?? null;
-$user_id = $_SESSION['user_id']; // Get the logged-in user's ID
+$user_id = $_SESSION['user_id'];
+
+// Validate file existence
+if ($media_path && !file_exists(__DIR__ . '/../' . $media_path)) {
+    error_log("Media file not found on server: " . $media_path);
+    $media_path = null;
+}
+
+// Log data before insertion
+error_log("Data before DB insert: title=$title, media_path=" . ($media_path ?? 'NULL'));
 
 // Validate required fields
 if (empty($title) || empty($description)) {
     $_SESSION['error'] = "Title and description are required.";
+    error_log("Error: Missing title or description");
     header("Location: ../collaboration.php");
     exit();
 }
-
-// Debug: Log session data
-error_log("Session data: " . print_r($collaboration, true));
 
 // Database insertion
 try {
@@ -58,22 +67,22 @@ try {
         $request_to_join,
         $enable_max_limit,
         $media_path,
-        $user_id // Add user_id to the query
+        $user_id
     ]);
 
-    if (!$success) {
+    if ($success && $stmt->rowCount() === 1) {
+        error_log("Collaboration inserted successfully, media_path: " . ($media_path ?? 'NULL'));
+        // Clear session data
+        unset($_SESSION['collaboration']);
+        $_SESSION['success'] = "Collaboration posted successfully!";
+        header("Location: ../collaboration.php");
+        exit();
+    } else {
+        error_log("Database insert failed. Rows affected: " . $stmt->rowCount());
         throw new Exception("Failed to insert data into the database.");
     }
-
-    // Clear session data
-    unset($_SESSION['collaboration']);
-    
-    $_SESSION['success'] = "Collaboration posted successfully!";
-    header("Location: ../collaboration.php");
-    exit();
-
 } catch (PDOException $e) {
-    error_log("Database error: " . $e->getMessage() . " | Query: INSERT INTO collaborations ...");
+    error_log("Database error: " . $e->getMessage());
     $_SESSION['error'] = "Failed to post collaboration: Database error occurred.";
     header("Location: ../collaboration.php");
     exit();

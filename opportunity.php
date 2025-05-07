@@ -21,6 +21,11 @@
             }
         }
     </script>
+     <style>
+        .widthss{
+            width:30%;
+        }
+    </style>
 </head>
 <body class="bg-gray-100 font-sans">
     <?php include 'navbar.php'; ?>
@@ -29,12 +34,12 @@
 
     <div class="flex min-h-screen">
         <!-- Left Sidebar -->
-        <div class="w-64 bg-white p-6 border-r border-gray-200">
+        <div class="p-6 widthss">
             <?php include 'left-sidebar.php'; ?>
         </div>
         
         <div class="flex-1 p-6">
-            <div class="max-w-4xl mx-auto bg-white rounded-md shadow-sm">   
+            <div class=" mx-auto bg-white rounded-md shadow-sm">   
                 <!-- Header -->
                 <div class="mb-6 p-6">
                     <h1 class="text-2xl font-bold text-center text-[rgba(2,53,100,1)]">Posting an Opportunity</h1>
