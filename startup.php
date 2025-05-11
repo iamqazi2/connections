@@ -115,7 +115,6 @@ $current_step = $_SESSION['current_step'] ?? 1;
     </style>
 </head>
 <body class="bg-gray-100 font-sans">
-    <?php include 'navbar.php'; ?>
 
     <?php if (isset($_SESSION['success'])): ?>
         <div class="max-w-4xl mx-auto mt-6 p-4 bg-green-100 text-green-700 rounded-lg">
@@ -131,9 +130,7 @@ $current_step = $_SESSION['current_step'] ?? 1;
 
     <div class="flex min-h-screen">
         <!-- Left Sidebar -->
-        <div class="p-6 widthss">
-            <?php include 'left-sidebar.php'; ?>
-        </div>
+       
         <div class="flex-1 p-6">
             <div class="mx-auto p-6 bg-white rounded-lg shadow-sm">
                 <div class="mb-8 p-6">

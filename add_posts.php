@@ -15,16 +15,11 @@
     </style>
 </head>
 <body class="bg-gray-100 font-sans">
-    <?php include 'navbar.php'; ?>
 
-    <div class="flex min-h-screen">
-        <!-- Left Sidebar -->
-        <div class="widthss p-6 ">
-            <?php include 'left-sidebar.php'; ?>
-        </div>
-        
+    <div class="w-full flex min-h-screen">
+      
         <!-- Main Content -->
-        <div class="flex-1 p-6">
+        <div class="flex-1 ">
             <div class=" mx-auto p-4 bg-white rounded-lg shadow-sm">
                 <div class="p-6">
                     <h1 class="text-2xl font-bold text-center text-blue-900">Adding Post</h1>

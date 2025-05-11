@@ -4,7 +4,7 @@ require_once 'connection.php'; // Your provided connection file
 
 // Check if user is logged in
 if (!isset($_SESSION['user_id'])) {
-    header("Location: login.php");
+    header("Location: signin.php");
     exit();
 }
 

@@ -382,7 +382,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <h3 class="text-blue-900 text-[32px] text-center font-bold mb-4">Apply Now</h3>
                     <?php if (!isset($_SESSION['user_id'])): ?>
                         <div class="mb-6 p-4 bg-yellow-50 text-yellow-800 rounded-lg">
-                            <p>You must be <a href="login.php" class="text-blue-600 hover:underline">logged in</a> to apply for this job.</p>
+                            <p>You must be <a href="signin.php" class="text-blue-600 hover:underline">logged in</a> to apply for this job.</p>
                         </div>
                     <?php endif; ?>
                     <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) . (isset($_GET['id']) ? '?id=' . intval($_GET['id']) : ''); ?>" method="post" enctype="multipart/form-data" class="space-y-6">

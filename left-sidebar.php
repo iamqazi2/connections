@@ -13,9 +13,9 @@
     <img src="images/opportunity.svg" class="w-6 h-6 text-gray-500">
     <span class="text-gray-500 font-medium">New Opportunities</span>
   </li>
-    <li class="flex items-center space-x-3 hover:bg-gray-100 p-4 rounded-lg cursor-pointer">
+    <li class="flex items-center space-x-3 hover:bg-gray-100 p-4 rounded-lg cursor-pointer" data-target="research_post_ui">
           <img src="images/research.svg" alt="House Icon" class="w-6 h-6 text-gray-500">
-          <a href="" class="text-gray-500 font-medium">New Research Ideas</a>
+          <span class="text-gray-500 font-medium">New Research Ideas</span>
         </li>
   <li class="flex items-center space-x-3 hover:bg-gray-100 p-4 rounded-lg cursor-pointer" data-target="startup-posts">
     <img src="images/startup.svg" class="w-6 h-6 text-gray-500">

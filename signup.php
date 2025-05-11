@@ -1,10 +1,10 @@
 <?php
-$emailError = $passwordError = '';
+$emailError = $passwordError = $successMessage = '';
 $email = '';
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $email = trim($_POST['email']);
-    $password = trim($_POST['password']); // Trim password to avoid accidental spaces
+    $password = trim($_POST['password']);
 
     // Email validation
     if (!preg_match('/^[a-zA-Z0-9._%+-]+@numls\.edu\.pk$/', $email)) {
@@ -18,40 +18,42 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 
     if (!$emailError && !$passwordError) {
-        // Database connection (replace with actual DB connection code)
         include 'connection.php';
 
-        // Hash the password
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-        // Check if email already exists
         $stmt = $pdo->prepare("SELECT id FROM users WHERE email = ?");
         $stmt->execute([$email]);
 
         if ($stmt->rowCount() > 0) {
             $emailError = "Email already registered.";
         } else {
-            // Insert new user into database
             try {
                 $stmt = $pdo->prepare("INSERT INTO users (email, password) VALUES (?, ?)");
                 $stmt->execute([$email, $hashedPassword]);
-
-                // Redirect to login page after successful signup
-                header("Location: signin");
-                exit;
+                
+                // Set success message
+                $successMessage = "Account created successfully!";
+                
+                // Delay redirect to show success message
+                echo "<script>
+                    setTimeout(function() {
+                        window.location.href = 'signin';
+                    }, 2000);
+                </script>";
+                $pdo = null;
+                // Exit to prevent further processing
+                // exit;
             } catch (PDOException $e) {
-                // Log any errors
                 error_log("Error during signup: " . $e->getMessage());
                 $emailError = "An error occurred while creating your account.";
             }
         }
 
-        // Close connection
         $pdo = null;
     }
 }
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -63,18 +65,21 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <title>Signup</title>
 </head>
 <body class="bg-gray-100 h-screen flex items-center justify-center relative">
-    <!-- Logo at the top-left corner -->
     <div class="absolute top-6 left-6">
         <img src="images/group.svg" alt="Logo">
     </div>
 
-    <!-- Form Container -->
     <div class="bg-white p-8 rounded-lg shadow-xl w-full max-w-md">
         <h1 class="text-4xl text-[#023564] font-bold mb-6 text-center">Signup</h1>
         <p class="mb-4 text-[#015CBF] text-center">"Sign up now to begin your journey with us!"</p>
 
+        <?php if ($successMessage): ?>
+            <div class="bg-green-100 border-l-4 border-green-500 text-green-700 p-4 mb-4 rounded" role="alert">
+                <p><?php echo $successMessage; ?></p>
+            </div>
+        <?php endif; ?>
+
         <form action="" method="POST" class="space-y-4">
-            <!-- Email Input -->
             <div class="relative">
                 <input type="email" name="email" placeholder="Email “numls.edu.pk”" class="block w-full px-4 py-4 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" value="<?= htmlspecialchars($email ?? '') ?>" required>
                 <?php if ($emailError): ?>
@@ -82,13 +87,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 <?php endif; ?>
             </div>
             
-            <!-- Password Input -->
             <div class="relative">
                 <input type="password" name="password" id="password" placeholder="Password" class="block w-full px-4 py-4 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required>
                 <?php if ($passwordError): ?>
                     <p class="text-red-500 text-sm mt-1"><?= $passwordError ?></p>
                 <?php endif; ?>
-                <!-- Eye Icon -->
                 <svg id="eyeIcon" xmlns="http://www.w3.org/2000/svg" class="absolute right-4 top-1/2 transform -translate-y-1/2 cursor-pointer w-6 h-6 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path id="eyePath" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.98 8.375C4.927 6.147 7.185 4 12 4s7.073 2.147 8.02 4.375c.42.95.42 2.3 0 3.25C19.073 13.853 16.815 16 12 16s-7.073-2.147-8.02-4.375c-.42-.95-.42-2.3 0-3.25z M3 3l18 18" />
                 </svg>
@@ -98,7 +101,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 <a href="signin.php" class="pl-2 underline text-[#015CBF] font-bold">Sign In</a>
             </p>
 
-            <!-- Signup Button -->
             <button type="submit" class="bg-customBlue w-full h-[60px] text-white px-6 py-2 rounded-lg hover:bg-[#023564]">
                 Sign Up
             </button>

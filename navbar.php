@@ -89,11 +89,11 @@ if ($userId === 0) {
     <!-- Navbar Menu -->
     <ul class="flex ul space-x-20">
       <li><a href="dashboard.php" class="flex flex-col items-center text-gray-800 hover:text-blue-400"><img src="images/icons.svg"><span class="text-xs">Home</span></a></li>
-      <li><a href="#" class="flex flex-col items-center text-gray-800 hover:text-blue-400"><img src="images/icons1.svg"><span class="text-xs">Explore</span></a></li>
-      <li><a href="#" class="flex flex-col items-center text-gray-800 hover:text-blue-400"><img src="images/icons2.svg"><span class="text-xs">My Portals</span></a></li>
-      <!-- <li><a href="#" class="flex flex-col items-center text-gray-800 hover:text-blue-400"><img src="images/icons3.svg"><span class="text-xs">Messages</span></a></li> -->
+      <li><a href="dashboard.php" class="flex flex-col items-center text-gray-800 hover:text-blue-400"><img src="images/icons1.svg"><span class="text-xs">Explore</span></a></li>
+      <li><a href="portals.php" class="flex flex-col items-center text-gray-800 hover:text-blue-400"><img src="images/icons2.svg"><span class="text-xs">My Portals</span></a></li>
+      <li><a href="chat_component.php" class="flex flex-col items-center text-gray-800 hover:text-blue-400"><img src="images/icons3.svg"><span class="text-xs">Messages</span></a></li>
       <li><a href="#" class="flex flex-col items-center text-gray-800 hover:text-blue-400"><img src="images/icons4.svg"><span class="text-xs">Notifications</span></a></li>
-      <li><a href="#" class="flex flex-col items-center text-gray-800 hover:text-blue-400"><img src="images/icons5.svg" class="h-10"><span class="text-xs">Add Post</span></a></li>
+      <li><a href="post_dashboard.php" class="flex flex-col items-center text-gray-800 hover:text-blue-400"><img src="images/icons5.svg" class="h-10"><span class="text-xs">Add Post</span></a></li>
     </ul>
 
     <!-- Profile Dropdown -->
@@ -103,13 +103,40 @@ if ($userId === 0) {
         <span>My Profile</span>
       </button>
 
-      <div id="profileDropdownMenu" class="hidden absolute right-0 mt-2 w-48 bg-white text-black rounded-lg shadow-md z-10">
-        <a href="#" class="block px-4 py-2 hover:bg-gray-100">View Profile</a>
-        <a href="#" class="block px-4 py-2 hover:bg-gray-100">Settings</a>
-        <form action="backend/logout.php" method="POST">
-          <button type="submit" class="block px-4 py-2 text-left w-full hover:bg-gray-100">Logout</button>
-        </form>
-      </div>
+     <div id="profileDropdownMenu"
+     class="hidden absolute right-0 mt-2 w-56 bg-white text-gray-800 rounded-xl shadow-lg z-50 transition-all duration-300 ease-in-out ring-1 ring-gray-200">
+  
+  <a href="profile_dashboard.php" class="flex items-center gap-3 px-5 py-3 hover:bg-gray-50 transition-colors rounded-t-xl">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500" fill="none" viewBox="0 0 24 24"
+         stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M5.121 17.804A13.937 13.937 0 0012 20c3.042 0 5.824-1.02 8.029-2.732M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+    </svg>
+    View Profile
+  </a>
+
+  <a href="" class="flex items-center gap-3 px-5 py-3 hover:bg-gray-50 transition-colors">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500" fill="none" viewBox="0 0 24 24"
+         stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M9.75 3a.75.75 0 00-.75.75v1.5c0 .414.336.75.75.75h.75v1.5h-3v3h3V15H6.75a.75.75 0 00-.75.75v1.5c0 .414.336.75.75.75H9v1.5a.75.75 0 001.5 0v-1.5h3v1.5a.75.75 0 001.5 0v-1.5h2.25a.75.75 0 00.75-.75v-1.5a.75.75 0 00-.75-.75H15v-4.5h3v-3h-3V6h.75a.75.75 0 00.75-.75v-1.5a.75.75 0 00-.75-.75H14.25a.75.75 0 00-.75.75v1.5a.75.75 0 00.75.75H15v1.5h-3v-1.5h.75a.75.75 0 00.75-.75v-1.5a.75.75 0 00-.75-.75H9.75z" />
+    </svg>
+    Settings
+  </a>
+
+  <form action="backend/logout.php" method="POST">
+    <button type="submit"
+            class="flex items-center gap-3 px-5 py-3 text-left w-full hover:bg-red-50 transition-colors text-red-600 font-medium rounded-b-xl">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-red-500" fill="none" viewBox="0 0 24 24"
+           stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1m0-10V5m0 0a2 2 0 011.293.464l1.293 1.293A2 2 0 0116 8h1a2 2 0 012 2v4a2 2 0 01-2 2h-1a2 2 0 01-1.414-.586l-1.293-1.293A2 2 0 0113 13v-2" />
+      </svg>
+      Logout
+    </button>
+  </form>
+</div>
+
     </div>
   </div>
 </nav>

@@ -12,3 +12,7 @@ RewriteRule ^signin$ /signin.php [L]
 # Optional: force www or https
 # RewriteCond %{HTTPS} off
 # RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI}
+
+RewriteEngine On
+RewriteRule ^api/users$ connections_ui.php [L]
+RewriteRule ^api/connection-request$ connections_ui.php [L]

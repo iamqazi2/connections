@@ -13,7 +13,6 @@
     </style>
 </head>
 <body class="bg-gray-100 font-sans">
-    <?php include 'navbar.php'; ?>
     <?php
     if (session_status() == PHP_SESSION_NONE) session_start();
     // Display success message if set
@@ -37,10 +36,7 @@
         </div>
     <?php endif; ?>
     <div class="flex min-h-screen">
-        <!-- Left Sidebar -->
-        <div class="p-6 widthss">
-                <?php include 'left-sidebar.php'; ?>
-        </div>
+     
         <div class="flex-1 p-6">
             <div class=" p-6 bg-white rounded-lg shadow-sm">
                 <?php
@@ -68,7 +64,7 @@
                             if (in_array($filetype, $allowed)) {
                                 if ($_FILES['media']['size'] <= $max_size) {
                                     $new_filename = uniqid() . '.' . $filetype;
-                                    $upload_dir = __DIR__ . '/uploads/';
+                                    $upload_dir = __DIR__ . '/research_media/';
                                     if (!is_dir($upload_dir)) mkdir($upload_dir, 0755, true);
                                     $target_path = $upload_dir . $new_filename;
                                     if (move_uploaded_file($_FILES['media']['tmp_name'], $target_path)) {
@@ -187,10 +183,10 @@
                                 foreach ($focus_areas as $index => $area):
                                     $is_selected = in_array($area, $selected_focus);
                                 ?>
-                                <label class="flex items-center justify-between p-3 border border-blue-600 rounded-full text-blue-900 hover:bg-blue-50 cursor-pointer <?php echo $is_selected ? 'bg-blue-50' : ''; ?>">
+                                <label class="tag-btn flex items-center justify-between p-3 border border-blue-600 rounded-full text-blue-900 hover:bg-blue-50 cursor-pointer <?php echo $is_selected ? 'bg-blue-100' : ''; ?>">
                                     <span><?php echo $area; ?></span>
                                     <input type="checkbox" name="focus[]" value="<?php echo $area; ?>" class="hidden" <?php echo $is_selected ? 'checked' : ''; ?>>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-2 <?php echo $is_selected ? 'hidden' : ''; ?>">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-2 plus-icon <?php echo $is_selected ? 'hidden' : ''; ?>">
                                         <line x1="12" y1="5" x2="12" y2="19"></line>
                                         <line x1="5" y1="12" x2="19" y2="12"></line>
                                     </svg>
@@ -373,7 +369,10 @@
         </div>
     </div>
     <style>
-        .tag-btn input:checked + svg {
+        .tag-btn input:checked + .plus-icon {
+            display: none;
+        }
+        .tag-btn input:checked ~ .plus-icon {
             display: none;
         }
         .tag-btn input:checked {
@@ -384,13 +383,16 @@
         document.addEventListener('DOMContentLoaded', function() {
             const tagButtons = document.querySelectorAll('.tag-btn');
             tagButtons.forEach(btn => {
-                btn.addEventListener('click', function() {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
                     const checkbox = this.querySelector('input[type="checkbox"]');
                     checkbox.checked = !checkbox.checked;
                     if (checkbox.checked) {
-                        this.classList.add('bg-blue-50');
+                        this.classList.add('bg-blue-100');
+                        this.querySelector('.plus-icon').classList.add('hidden');
                     } else {
-                        this.classList.remove('bg-blue-50');
+                        this.classList.remove('bg-blue-100');
+                        this.querySelector('.plus-icon').classList.remove('hidden');
                     }
                 });
             });
@@ -401,9 +403,9 @@
                     tagButtons.forEach(btn => {
                         const tagText = btn.querySelector('span').textContent.toLowerCase();
                         if (tagText.includes(searchTerm)) {
-                            btn.parentElement.style.display = '';
+                            btn.style.display = '';
                         } else {
-                            btn.parentElement.style.display = 'none';
+                            btn.style.display = 'none';
                         }
                     });
                 });

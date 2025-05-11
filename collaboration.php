@@ -13,7 +13,6 @@
     </style>
 </head>
 <body class="bg-gray-100 font-sans">
-    <?php include 'navbar.php'; ?>
     <?php
     if (session_status() == PHP_SESSION_NONE) session_start();
     if (isset($_SESSION['success'])): ?>
@@ -34,10 +33,7 @@
     <?php endif; ?>
 
     <div class="flex min-h-screen">
-        <!-- Left Sidebar -->
-        <div class="widthss p-6">
-            <?php include 'left-sidebar.php'; ?>
-        </div>
+       
         <div class="flex-1">
             <div class="my-6 p-6 bg-white rounded-lg shadow-sm">
                 <?php

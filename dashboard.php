@@ -19,7 +19,7 @@ $profilePicturePath = "images/profile.svg";
 if ($userId === 0) {
     // $debugMessages .= "Debug: No user_id in session. Please ensure you are logged in.<br>";
 } else {
-    $sql = "SELECT profile_image FROM user_details WHERE user_id = :id";
+    $sql = "SELECT profile_image FROM user_details WHERE id = :id";
     $stmt = $pdo->prepare($sql);
     $stmt->execute(['id' => $userId]);
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -162,6 +162,7 @@ if ($userId === 0) {
   <?php include 'collaborations_posts.php'; ?>
   <?php include 'job_posts.php'; ?>
   <?php include 'simple_posts.php'; ?>
+   <?php include 'research_post_ui.php'; ?>
 </div>
 
 <div id="simple-posts" class="post-section hidden">
@@ -174,6 +175,9 @@ if ($userId === 0) {
 
 <div id="startup-posts" class="post-section hidden">
   <?php include 'startup_posts.php'; ?>
+</div>
+<div id="research_post_ui" class="post-section hidden">
+  <?php include 'research_post_ui.php'; ?>
 </div>
 
 <div id="collaboration-posts" class="post-section hidden">

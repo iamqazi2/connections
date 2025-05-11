@@ -185,18 +185,19 @@ function publicPath($path) {
   <title>Profile Page</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+   
+  </style>
 </head>
 <body class="font-sans bg-gray-50 p-4">
-  <?php include 'navbar.php'; ?>
+
 
   <div class="flex min-h-screen">
     <!-- Left Sidebar -->
-    <div class="w-64 bg-white p-6 border-r border-gray-200">
-      <?php include 'left-sidebar-2.php'; ?>
-    </div>
+    
 
     <!-- Main Content -->
-    <div class="w-[1046px] mx-auto bg-white rounded-lg shadow-sm">
+    <div class="w-full mx-auto bg-white rounded-lg shadow-sm">
 
       <!-- Profile Section -->
       <div class="bg-white rounded-lg shadow-md mb-6 p-5">

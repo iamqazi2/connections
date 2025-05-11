@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         // Fetch user from DB
         try {
-            $stmt = $pdo->prepare("SELECT id, password, is_first_login FROM users WHERE email = ?");
+            $stmt = $pdo->prepare("SELECT id, password FROM users WHERE email = ?");
             $stmt->execute([$email]);
             $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -49,18 +49,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 // Set session variables
                 $_SESSION['user_id'] = $user['id'];
                 $_SESSION['email'] = $email;
+                $_SESSION['success_message'] = "Login successful! Welcome back!"; // Added success message
 
-                // Check if it's the user's first login
-                if ($user['is_first_login']) {
-                    // Update is_first_login to 0
-                    $updateStmt = $pdo->prepare("UPDATE users SET is_first_login = 0 WHERE id = ?");
-                    $updateStmt->execute([$user['id']]);
-                    // Redirect to screen.php for first login
-                    header("Location: user_profile.php");
-                } else {
-                    // Redirect to dashboard.php for subsequent logins
-                    header("Location: dashboard.php");
-                }
+                // Redirect to dashboard or home page
+                header("Location: dashboard.php");
                 exit;
             } else {
                 // Password incorrect
@@ -123,20 +115,23 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
             <!-- Remember Me Toggle -->
             <div class="flex items-center justify-between mt-4">
-                <label for="toggle" class="flex items-center cursor-pointer">
-                    <input type="checkbox" id="toggle" name="remember_me" class="sr-only peer" <?= isset($_COOKIE['email']) ? 'checked' : ''; ?>>
-                    <div class="block relative bg-gray-300 w-12 h-6 p-0.5 rounded-full peer-checked:bg-customBlue before:absolute before:bg-white before:w-5 before:h-5 before:rounded-full before:transition-all before:duration-500 before:left-0.5 peer-checked:before:left-6"></div>
-                    <span class="text-sm text-gray-600 ml-3">Remember Me</span>
-                </label>
-                <p class="text-sm text-[#015CBF] cursor-pointer hover:underline">Forget Password?</p>
-            </div>
+         <label for="remember_me" class="flex items-center cursor-pointer">
+        <input type="checkbox" id="remember_me" name="remember_me" 
+               class="sr-only peer" <?= isset($_COOKIE['email']) ? 'checked' : '' ?>>
+        <div class="block relative bg-gray-300 w-12 h-6 p-0.5 rounded-full transition-colors peer-checked:bg-blue-600">
+            <div class="absolute left-0.5 top-0.5 bg-white w-5 h-5 rounded-full transition-transform duration-300 peer-checked:translate-x-6"></div>
+        </div>
+        <span class="text-sm text-gray-600 ml-3">Remember Me</span>
+    </label>
+        <p class="text-sm text-[#015CBF] cursor-pointer hover:underline">Forget Password?</p>
+    </div>
             <!-- Sign In Button -->
             <button type="submit" class="bg-color w-full h-[60px] text-white px-6 py-2 rounded-lg hover:bg-[#023564] mt-6">
                 Sign In
             </button>
         </form>
 
-        <p class="my-6 text-[#015CBF] text-center">Don't have an account?<span class="mb-4 pl-2 underline text-[#015CBF] text-right font-bold">Sign Up!</span></p>
+        <p class="my-6 text-[#015CBF] text-center">Don't have an account?<a href="signup.php" class="pl-2 underline text-[#015CBF] font-bold">Sign Up!</a></p>
     </div>
 
     <script>

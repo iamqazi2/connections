@@ -7,13 +7,9 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="font-sans bg-gray-50 p-4">
-    <?php include 'navbar.php'; ?>
 
   <div class="flex min-h-screen">
-    <!-- Left Sidebar -->
-    <div class="w-64 bg-white p-6 border-r border-gray-200">
-      <?php include 'left-sidebar-2.php'; ?>
-    </div>
+  
    <div class="w-[1046px]  mx-auto bg-white rounded-lg shadow-sm">
  
         <?php

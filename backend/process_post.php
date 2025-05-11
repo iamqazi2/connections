@@ -18,7 +18,7 @@ if (!isset($pdo)) {
 // 3. Ensure user is logged in
 if (!isset($_SESSION['user_id'])) {
     $_SESSION['error'] = "You must be logged in to create a post";
-    header("Location: ../login.php");
+    header("Location: ../signin.php");
     exit();
 }
 

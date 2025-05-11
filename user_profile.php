@@ -64,12 +64,57 @@
                         <label for="city" class="block text-[#1E1E1ECC] text-[24px] font-[600] mb-2">Current City</label>
                         <div class="relative">
                             <select id="city" class="w-full px-4 py-3 border border-[#D9D9D9] rounded-lg appearance-none focus:outline-none focus:ring-2 focus:ring-blue-500">
-                                <option value="" disabled selected>Select City</option>
-                                <option value="new-york">New York</option>
-                                <option value="london">London</option>
-                                <option value="tokyo">Tokyo</option>
-                                <option value="paris">Paris</option>
-                            </select>
+    <option value="" disabled selected>Select City</option>
+    <option value="abbottabad">Abbottabad</option>
+    <option value="bahawalnagar">Bahawalnagar</option>
+    <option value="bahawalpur">Bahawalpur</option>
+    <option value="bannu">Bannu</option>
+    <option value="chakwal">Chakwal</option>
+    <option value="chaman">Chaman</option>
+    <option value="charsadda">Charsadda</option>
+    <option value="chiniot">Chiniot</option>
+    <option value="dadu">Dadu</option>
+    <option value="dera-ghazi-khan">Dera Ghazi Khan</option>
+    <option value="dera-ismail-khan">Dera Ismail Khan</option>
+    <option value="faisalabad">Faisalabad</option>
+    <option value="gilgit">Gilgit</option>
+    <option value="gojra">Gojra</option>
+    <option value="gujranwala">Gujranwala</option>
+    <option value="gujrat">Gujrat</option>
+    <option value="gwadar">Gwadar</option>
+    <option value="hafizabad">Hafizabad</option>
+    <option value="hyderabad">Hyderabad</option>
+    <option value="islamabad">Islamabad</option>
+    <option value="jacobabad">Jacobabad</option>
+    <option value="jhang">Jhang</option>
+    <option value="jhelum">Jhelum</option>
+    <option value="karachi">Karachi</option>
+    <option value="kasur">Kasur</option>
+    <option value="khairpur">Khairpur</option>
+    <option value="khanewal">Khanewal</option>
+    <option value="kohat">Kohat</option>
+    <option value="larkana">Larkana</option>
+    <option value="lahore">Lahore</option>
+    <option value="mardan">Mardan</option>
+    <option value="mirpur-ajk">Mirpur (AJK)</option>
+    <option value="multan">Multan</option>
+    <option value="muzaffarabad">Muzaffarabad</option>
+    <option value="muzaffargarh">Muzaffargarh</option>
+    <option value="nawabshah">Nawabshah</option>
+    <option value="okara">Okara</option>
+    <option value="peshawar">Peshawar</option>
+    <option value="quetta">Quetta</option>
+    <option value="rahim-yar-khan">Rahim Yar Khan</option>
+    <option value="rawalpindi">Rawalpindi</option>
+    <option value="sahiwal">Sahiwal</option>
+    <option value="sargodha">Sargodha</option>
+    <option value="sheikhupura">Sheikhupura</option>
+    <option value="sialkot">Sialkot</option>
+    <option value="sukkur">Sukkur</option>
+    <option value="swabi">Swabi</option>
+    <option value="vehari">Vehari</option>
+</select>
+
                             <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-blue-900">
                                 <i class="fas fa-chevron-down"></i>
                             </div>
@@ -80,13 +125,58 @@
                     <div>
                         <label for="homeland" class="block text-[#1E1E1ECC] text-[24px] font-[600] mb-2">Homeland</label>
                         <div class="relative">
-                            <select id="homeland" class="w-full px-4 py-3 border border-[#D9D9D9] rounded-lg appearance-none focus:outline-none focus:ring-2 focus:ring-blue-500">
-                                <option value="" disabled selected>Select Homeland</option>
-                                <option value="usa">United States</option>
-                                <option value="uk">United Kingdom</option>
-                                <option value="japan">Japan</option>
-                                <option value="france">France</option>
-                            </select>
+                           <select id="homeland" class="w-full px-4 py-3 border border-[#D9D9D9] rounded-lg appearance-none focus:outline-none focus:ring-2 focus:ring-blue-500">
+    <option value="" disabled selected>Select Homeland</option>
+    <option value="abbottabad">Abbottabad</option>
+    <option value="bahawalnagar">Bahawalnagar</option>
+    <option value="bahawalpur">Bahawalpur</option>
+    <option value="bannu">Bannu</option>
+    <option value="chakwal">Chakwal</option>
+    <option value="chaman">Chaman</option>
+    <option value="charsadda">Charsadda</option>
+    <option value="chiniot">Chiniot</option>
+    <option value="dadu">Dadu</option>
+    <option value="dera-ghazi-khan">Dera Ghazi Khan</option>
+    <option value="dera-ismail-khan">Dera Ismail Khan</option>
+    <option value="faisalabad">Faisalabad</option>
+    <option value="gilgit">Gilgit</option>
+    <option value="gojra">Gojra</option>
+    <option value="gujranwala">Gujranwala</option>
+    <option value="gujrat">Gujrat</option>
+    <option value="gwadar">Gwadar</option>
+    <option value="hafizabad">Hafizabad</option>
+    <option value="hyderabad">Hyderabad</option>
+    <option value="islamabad">Islamabad</option>
+    <option value="jacobabad">Jacobabad</option>
+    <option value="jhang">Jhang</option>
+    <option value="jhelum">Jhelum</option>
+    <option value="karachi">Karachi</option>
+    <option value="kasur">Kasur</option>
+    <option value="khairpur">Khairpur</option>
+    <option value="khanewal">Khanewal</option>
+    <option value="kohat">Kohat</option>
+    <option value="larkana">Larkana</option>
+    <option value="lahore">Lahore</option>
+    <option value="mardan">Mardan</option>
+    <option value="mirpur-ajk">Mirpur (AJK)</option>
+    <option value="multan">Multan</option>
+    <option value="muzaffarabad">Muzaffarabad</option>
+    <option value="muzaffargarh">Muzaffargarh</option>
+    <option value="nawabshah">Nawabshah</option>
+    <option value="okara">Okara</option>
+    <option value="peshawar">Peshawar</option>
+    <option value="quetta">Quetta</option>
+    <option value="rahim-yar-khan">Rahim Yar Khan</option>
+    <option value="rawalpindi">Rawalpindi</option>
+    <option value="sahiwal">Sahiwal</option>
+    <option value="sargodha">Sargodha</option>
+    <option value="sheikhupura">Sheikhupura</option>
+    <option value="sialkot">Sialkot</option>
+    <option value="sukkur">Sukkur</option>
+    <option value="swabi">Swabi</option>
+    <option value="vehari">Vehari</option>
+</select>
+
                             <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-blue-900">
                                 <i class="fas fa-chevron-down"></i>
                             </div>
@@ -100,37 +190,47 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <!-- Select Campus -->
                     <div>
-                        <label for="campus" class="block text-[#1E1E1ECC] text-[24px] font-[600] mb-2">Select Campus</label>
-                        <div class="relative">
-                            <select id="campus" class="w-full px-4 py-3 border border-[#D9D9D9] rounded-lg appearance-none focus:outline-none focus:ring-2 focus:ring-blue-500">
-                                <option value="" disabled selected>Select Campus</option>
-                                <option value="main">Main Campus</option>
-                                <option value="north">North Campus</option>
-                                <option value="south">South Campus</option>
-                                <option value="east">East Campus</option>
-                                <option value="islamabad">Main (Islamabad)</option>
-                            </select>
-                            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-blue-900">
-                                <i class="fas fa-chevron-down"></i>
-                            </div>
-                        </div>
+                       <label for="campus" class="block text-[#1E1E1ECC] text-[24px] font-[600] mb-2">Select Campus</label>
+<div class="relative">
+    <select id="campus" class="w-full px-4 py-3 border border-[#D9D9D9] rounded-lg appearance-none focus:outline-none focus:ring-2 focus:ring-blue-500">
+        <option value="" disabled selected>Select Campus</option>
+        <option value="islamabad">Islamabad (Main Campus)</option>
+        <option value="lahore">Lahore Campus</option>
+        <option value="karachi">Karachi Campus</option>
+        <option value="quetta">Quetta Campus</option>
+        <option value="peshawar">Peshawar Campus</option>
+        <option value="multan">Multan Campus</option>
+        <option value="hyderabad">Hyderabad Campus</option>
+        <option value="mirpur">Azad Kashmir Campus (Mirpur)</option>
+        <option value="gwadar">Gwadar Campus</option>
+        <option value="faisalabad">Faisalabad Campus</option>
+    </select>
+    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-blue-900">
+        <i class="fas fa-chevron-down"></i>
+    </div>
+</div>
+
                     </div>
                     
                     <!-- Select Department -->
                     <div>
-                        <label for="department" class="block text-[#1E1E1ECC] text-[24px] font-[600] mb-2">Select Department</label>
-                        <div class="relative">
-                            <select id="department" class="w-full px-4 py-3 border border-[#D9D9D9] rounded-lg appearance-none focus:outline-none focus:ring-2 focus:ring-blue-500">
-                                <option value="" disabled selected>Select Department</option>
-                                <option value="engineering">Engineering</option>
-                                <option value="business">Business</option>
-                                <option value="arts">Arts & Humanities</option>
-                                <option value="science">Science</option>
-                            </select>
-                            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-blue-900">
-                                <i class="fas fa-chevron-down"></i>
-                            </div>
-                        </div>
+                       <label for="department" class="block text-[#1E1E1ECC] text-[24px] font-[600] mb-2">Select Department</label>
+<div class="relative">
+    <select id="department" class="w-full px-4 py-3 border border-[#D9D9D9] rounded-lg appearance-none focus:outline-none focus:ring-2 focus:ring-blue-500">
+        <option value="" disabled selected>Select Department</option>
+        <option value="english">Faculty of English Studies</option>
+        <option value="social-sciences">Faculty of Social Sciences</option>
+        <option value="management">Faculty of Management Sciences</option>
+        <option value="engineering-cs">Faculty of Engineering and Computer Sciences</option>
+        <option value="languages">Faculty of Languages</option>
+        <option value="education">Faculty of Education</option>
+        <option value="media">Faculty of Media and Communication Studies</option>
+    </select>
+    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-blue-900">
+        <i class="fas fa-chevron-down"></i>
+    </div>
+</div>
+
                     </div>
                 </div>
             </div>
